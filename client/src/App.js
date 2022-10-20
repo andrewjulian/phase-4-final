@@ -1,7 +1,11 @@
 import './App.css';
+import {Routes, Route} from "react-router-dom"
 import Landing from './components/Landing';
 import Navbar from './components/Navbar';
-import {Routes, Route} from "react-router-dom"
+import Questions from './components/Questions';
+import MyQuestions from './components/MyQuestions';
+import Profile from './components/Profile';
+
 
 function App() {
   return (
@@ -9,6 +13,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/questions" element={<Questions />} />
+        <Route path="/myquestions" element={<MyQuestions />} />
+        <Route path="/profile" element={<Profile/>} />
       </Routes>
     </div>
   );

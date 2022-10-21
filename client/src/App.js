@@ -1,16 +1,18 @@
 import './App.css';
 import {Routes, Route} from "react-router-dom"
 import Landing from './components/Landing';
-import Navbar from './components/Navbar';
 import Questions from './components/Questions';
 import MyQuestions from './components/MyQuestions';
 import Profile from './components/Profile';
 
 
 function App() {
+
+  
+
+
   return (
     <div className="App">
-      <Navbar />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/questions" element={<Questions />} />

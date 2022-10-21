@@ -1,8 +1,13 @@
 import React from 'react'
+import Navbar from './Navbar';
+
 
 const MyQuestions = () => {
   return (
-    <div>MyQuestions</div>
+    <div>
+      <Navbar />
+      <p>My Questions</p>
+    </div>
   )
 }
 

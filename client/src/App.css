@@ -46,7 +46,7 @@
   margin: 0.5rem;
   border: 1px solid;
   padding: 10px;
-  box-shadow: 5px 5px 5px #888888;
+  box-shadow: 5px 5px 10px #888888;
 }
 
 .title {
@@ -78,13 +78,65 @@
   display: block;
 }
 
+.navbar-links:active {
+  text-decoration: underline;
+}
+
 .navbar-links:hover {
   background-color: lightgray;
   color: darkblue; 
+  border-radius: 20px;
 }
 
 .profile-logo {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+
+.login {
+  width: 50%;
+  height: 50%;
+  position: fixed;
+  left: 25%;
+  top: 20%;
+  background-color: lightgray;
+  color: darkblue
+}
+
+input[type=text], input[type=password] {
+  width: 95%;
+  height: 40px;
+  margin: 5px;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: rgb(80,80,160);
+  color: white;
+  outline: none;
+}
+
+.registerbtn {
+  background-color: darkblue;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

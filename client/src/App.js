@@ -4,20 +4,19 @@ import Landing from './components/Landing';
 import Questions from './components/Questions';
 import MyQuestions from './components/MyQuestions';
 import Profile from './components/Profile';
+import Signup from './components/Signup';
 
 
 function App() {
 
-  
-
-
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/questions" element={<Questions />} />
         <Route path="/myquestions" element={<MyQuestions />} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/" element={<Landing />} />
       </Routes>
     </div>
   );

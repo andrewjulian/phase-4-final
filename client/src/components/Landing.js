@@ -33,12 +33,12 @@ const Landing = () => {
         <input type="text" placeholder="Enter Password" value={password} onChange={handlePasswordChange} id="psw" required></input>
         <br/>
         <p>By creating an account you agree to our Terms & Privacy</p>
-        <button type="submit" className="registerbtn">Register</button>
+        <button type="submit" className="registerbtn">Log In</button>
       </form>
 
       <div className="signin">
         <p>Don't have an account? Sign Up!</p>
-        <button>
+        <button className="accountbtn">
           <Link to="/signup">Sign Up!</Link>
         </button>
       </div>

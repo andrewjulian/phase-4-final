@@ -41,12 +41,12 @@ const Signup = () => {
         <input type="text" placeholder="Enter Password" value={imageUrl} onChange={(e)=> setImageUrl(e.target.value)} id="psw" required></input>
         <br/>
         <p>By creating an account you agree to our Terms & Privacy</p>
-        <button type="submit" className="registerbtn">Register</button>
+        <button type="submit" className="registerbtn">Register!</button>
       </form>
 
       <div className="signin">
         <p>Already have an account? Sign in</p>
-        <button>
+        <button className="accountbtn">
           <Link to="/">Login</Link>
         </button>
       </div>

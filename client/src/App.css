@@ -104,6 +104,16 @@
   color: darkblue
 }
 
+.signup{
+  width: 50%;
+  height: 75%;
+  position: fixed;
+  left: 25%;
+  top: 5%;
+  background-color: lightgray;
+  color: darkblue
+}
+
 input[type=text], input[type=password] {
   width: 95%;
   height: 40px;

@@ -16,7 +16,7 @@ const Landing = () => {
   
   function handleLoginSubmit(e){
     e.preventDefault()
-    console.log("Yes!")
+    console.log("Yes! Login!")
     setUsername("")
     setPassword("")
   }
@@ -37,7 +37,7 @@ const Landing = () => {
       </form>
 
       <div className="signin">
-        <p>Already have an account? Sign in</p>
+        <p>Don't have an account? Sign Up!</p>
         <button>
           <Link to="/signup">Sign Up!</Link>
         </button>

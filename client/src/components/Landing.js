@@ -44,7 +44,7 @@ const Landing = () => {
       </form>
 
       <div className="signin">
-        <p>Don't have an account? Sign Up!</p>
+        <p>Don't have an account?</p>
         <button className="accountbtn">
           <Link to="/signup">Sign Up!</Link>
         </button>

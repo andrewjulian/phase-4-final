@@ -101,7 +101,15 @@
   left: 25%;
   top: 20%;
   background-color: lightgray;
-  color: darkblue
+  color: darkblue;
+  text-align: center;
+}
+
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .signup{
@@ -144,9 +152,3 @@ input[type=text]:focus, input[type=password]:focus {
   opacity:1;
 }
 
-.signin {
-  background-color: #f1f1f1;
-  text-align: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}

@@ -4,6 +4,15 @@ import {NavLink as Link} from 'react-router-dom'
 import logo from '../images/logo.png';
 
 const Navbar = () => {
+
+  function handleLogoutClick({setCurrentUser}) {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setCurrentUser(null);
+      }
+    });
+  }
+
   return (
     <nav className='navbar'>
       <div class='title'>Readit</div>
@@ -13,6 +22,9 @@ const Navbar = () => {
           <Link className='profile-link' to="/profile">
             <img className='profile-logo' src={logo} alt="profile"/>
           </Link>
+          <button onClick={handleLogoutClick}>
+            Logout
+          </button>
         </div>
     </nav>
   )

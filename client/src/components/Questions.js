@@ -4,7 +4,6 @@ import Navbar from './Navbar';
 const Questions = () => {
   return (
     <div>
-      <Navbar />
       <p>Questions</p>
     </div>
   )

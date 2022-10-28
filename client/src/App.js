@@ -5,20 +5,31 @@ import Questions from './components/Questions';
 import MyQuestions from './components/MyQuestions';
 import Profile from './components/Profile';
 import Signup from './components/Signup';
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
+import Navbar from './components/Navbar';
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState("")
 
+  useEffect(()=> {
+    fetch('/auth')
+    .then(res=> {
+      if(res.ok){
+        res.json().then(user => setCurrentUser(user))
+      }
+    })
+  },[])
+
+  if(!currentUser) return <Landing setCurrentUser={setCurrentUser} />
+
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Signup setCurrentUser={setCurrentUser} />} />
-        <Route path="/questions" element={<Questions />} />
-        <Route path="/myquestions" element={<MyQuestions />} />
-        <Route path="/profile" element={<Profile/>} />
-        <Route path="/login" element={<Landing />} />
+        <Navbar setCurrentUser={setCurrentUser} />
+        <Route path="/" element={<Questions setCurrentUser={setCurrentUser} />} />
+        <Route path="/myquestions" element={<MyQuestions setCurrentUser={setCurrentUser} />} />
+        <Route path="/profile" element={<Profile setCurrentUser={setCurrentUser}/>} />
       </Routes>
     </div>
   );

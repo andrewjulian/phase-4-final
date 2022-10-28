@@ -2,14 +2,12 @@ import React, { useState } from 'react'
 import {NavLink as Link} from 'react-router-dom'
 import '../App.css'
 
-const Landing = () => {
+const Landing = ({setCurrentUser}) => {
   
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState("")
   const [errors, setErrors] = useState([])
-
-
 
   function handleUsernameChange(event){
     setUsername(event.target.value)
@@ -21,7 +19,22 @@ const Landing = () => {
   function handleLoginSubmit(e){
     e.preventDefault()
 
-    
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        password
+      }),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setCurrentUser(user));
+      } else {
+        console.log(errors)
+      }
+    });
 
     console.log("Yes! Login!")
     setUsername("")

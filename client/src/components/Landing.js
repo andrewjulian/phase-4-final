@@ -6,6 +6,10 @@ const Landing = () => {
   
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [login, setLogin] = useState("")
+  const [errors, setErrors] = useState([])
+
+
 
   function handleUsernameChange(event){
     setUsername(event.target.value)
@@ -16,6 +20,9 @@ const Landing = () => {
   
   function handleLoginSubmit(e){
     e.preventDefault()
+
+    
+
     console.log("Yes! Login!")
     setUsername("")
     setPassword("")

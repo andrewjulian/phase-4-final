@@ -2,16 +2,38 @@ import React, { useState } from 'react'
 import {NavLink as Link} from 'react-router-dom'
 import '../App.css'
 
-const Signup = () => {
+const Signup = ({setCurrentUser}) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const [login, setLogin] = useState("")
+  const [errors, setErrors] = useState([])
 
   function handleLoginSubmit(e){
     e.preventDefault()
+
+    const user = {
+      username,
+      password,
+      display_name: displayName,
+      image_url: imageUrl
+    }
+    fetch('/users',{
+      method: "POST",
+      headers:{'Content-type':'application/json'},
+      body:JSON.stringify(user)
+    })
+    .then(res => {
+      if(res.ok){
+        res.json().then(setCurrentUser(user))
+      } else {
+        console.log(errors)
+      }
+    })
+
     console.log("Yes! Signup!")
     setUsername("")
     setPassword("")

@@ -3,10 +3,11 @@ class UsersController < ApplicationController
   #skip_before_action :authorize, only: [:create]
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+
+  skip_before_action :authorize, only: [:create]
   
   def create
     user = User.create!(user_params)
-    byebug
     render json: user
     #if user.valid?
     #  session[:user_id] = user.id
@@ -28,6 +29,6 @@ class UsersController < ApplicationController
   end
 
   def user_params()
-    params.permit(:id, :username, :password, :password_confirmation, :image_url, :display_name)
+    params.permit(:id, :username, :password, :image_url, :display_name)
   end
 end

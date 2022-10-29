@@ -6,7 +6,7 @@ const Landing = ({setCurrentUser}) => {
   
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [login, setLogin] = useState("")
+  //const [login, setLogin] = useState("")
   const [errors, setErrors] = useState([])
 
   function handleUsernameChange(event){

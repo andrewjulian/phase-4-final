@@ -9,7 +9,7 @@ const Signup = ({setCurrentUser}) => {
   const [confirm, setConfirm] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const [login, setLogin] = useState("")
+  //const [login, setLogin] = useState("")
   const [errors, setErrors] = useState([])
 
   function handleLoginSubmit(e){
@@ -21,6 +21,7 @@ const Signup = ({setCurrentUser}) => {
       display_name: displayName,
       image_url: imageUrl
     }
+
     fetch('/users',{
       method: "POST",
       headers:{'Content-type':'application/json'},
@@ -52,15 +53,15 @@ const Signup = ({setCurrentUser}) => {
         <br/>
         <br/>
         <label for="psw"><b>Confirm Password: </b></label>
-        <input type="text" placeholder="Enter Password" value={confirm} onChange={(e)=> setConfirm(e.target.value)} id="psw" required></input>
+        <input type="text" placeholder="Confirm Password" value={confirm} onChange={(e)=> setConfirm(e.target.value)} id="psw" required></input>
         <br/>
         <br/>
         <label for="psw"><b>Display Name: </b></label>
-        <input type="text" placeholder="Enter Password" value={displayName} onChange={(e)=> setDisplayName(e.target.value)} id="psw" required></input>
+        <input type="text" placeholder="Enter Display Name" value={displayName} onChange={(e)=> setDisplayName(e.target.value)} id="psw" required></input>
         <br/>
         <br/>
         <label for="psw"><b>Profile Picture URL: </b></label>
-        <input type="text" placeholder="Enter Password" value={imageUrl} onChange={(e)=> setImageUrl(e.target.value)} id="psw" required></input>
+        <input type="text" placeholder="Enter Image URL" value={imageUrl} onChange={(e)=> setImageUrl(e.target.value)} id="psw" required></input>
         <br/>
         <p>By creating an account you agree to our Terms & Privacy</p>
         <button type="submit" className="registerbtn">Register!</button>

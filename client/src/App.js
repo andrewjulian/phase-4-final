@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 function App() {
 
   const [currentUser, setCurrentUser] = useState("")
+  //const [loggedIn, setLoggedIn] = useState()
 
   useEffect(()=> {
     fetch('/auth')
@@ -21,12 +22,17 @@ function App() {
     })
   },[])
 
-  if(!currentUser) return <Landing setCurrentUser={setCurrentUser} />
+  if(!currentUser) return (
+    <Routes>
+      <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} />} />
+      <Route path="/" element={<Landing setCurrentUser={setCurrentUser} />} />
+    </Routes>
+  ) 
 
   return (
     <div className="App">
+      <Navbar setCurrentUser={setCurrentUser} />
       <Routes>
-        <Navbar setCurrentUser={setCurrentUser} />
         <Route path="/" element={<Questions setCurrentUser={setCurrentUser} />} />
         <Route path="/myquestions" element={<MyQuestions setCurrentUser={setCurrentUser} />} />
         <Route path="/profile" element={<Profile setCurrentUser={setCurrentUser}/>} />

@@ -10,8 +10,7 @@ import Navbar from './components/Navbar';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState("")
-  //const [loggedIn, setLoggedIn] = useState()
+  const [currentUser, setCurrentUser] = useState(null)
 
   useEffect(()=> {
     fetch('/auth')

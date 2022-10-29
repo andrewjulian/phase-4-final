@@ -6,10 +6,8 @@ const Signup = ({setCurrentUser}) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [displayName, setDisplayName] = useState("");
-  //const [login, setLogin] = useState("")
   const [errors, setErrors] = useState([])
 
   function handleLoginSubmit(e){
@@ -44,23 +42,19 @@ const Signup = ({setCurrentUser}) => {
     <div className="signup">
       <h1>Sign Up for Readit!</h1>
       <form onSubmit={handleLoginSubmit}>
-        <label for="email"><b>Email: </b></label>
+        <label htmlFor="email"><b>Email: </b></label>
         <input type="text" placeholder="Enter Email" value={username} onChange={(e)=>setUsername(e.target.value)} id="email" required></input>
         <br/>
         <br/>
-        <label for="psw"><b>Password: </b></label>
+        <label htmlFor="psw"><b>Password: </b></label>
         <input type="text" placeholder="Enter Password" value={password} onChange={(e)=>setPassword(e.target.value)} id="psw" required></input>
         <br/>
         <br/>
-        <label for="psw"><b>Confirm Password: </b></label>
-        <input type="text" placeholder="Confirm Password" value={confirm} onChange={(e)=> setConfirm(e.target.value)} id="psw" required></input>
-        <br/>
-        <br/>
-        <label for="psw"><b>Display Name: </b></label>
+        <label htmlFor="psw"><b>Display Name: </b></label>
         <input type="text" placeholder="Enter Display Name" value={displayName} onChange={(e)=> setDisplayName(e.target.value)} id="psw" required></input>
         <br/>
         <br/>
-        <label for="psw"><b>Profile Picture URL: </b></label>
+        <label htmlFor="psw"><b>Profile Picture URL: </b></label>
         <input type="text" placeholder="Enter Image URL" value={imageUrl} onChange={(e)=> setImageUrl(e.target.value)} id="psw" required></input>
         <br/>
         <p>By creating an account you agree to our Terms & Privacy</p>

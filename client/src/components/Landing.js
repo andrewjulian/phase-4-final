@@ -45,11 +45,11 @@ const Landing = ({setCurrentUser}) => {
     <div className="login">
       <h1>Login to Readit!</h1>
       <form onSubmit={handleLoginSubmit}>
-        <label for="email"><b>Email: </b></label>
+        <label htmlFor="email"><b>Email: </b></label>
         <input type="text" placeholder="Enter Email" value={username} onChange={handleUsernameChange} id="email" required></input>
         <br/>
         <br/>
-        <label for="psw"><b>Password: </b></label>
+        <label htmlFor="psw"><b>Password: </b></label>
         <input type="text" placeholder="Enter Password" value={password} onChange={handlePasswordChange} id="psw" required></input>
         <br/>
         <p>By creating an account you agree to our Terms & Privacy</p>

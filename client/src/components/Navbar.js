@@ -3,9 +3,9 @@ import "../App.css"
 import {NavLink as Link} from 'react-router-dom'
 import logo from '../images/logo.png';
 
-const Navbar = () => {
+const Navbar = ({setCurrentUser}) => {
 
-  function handleLogoutClick({setCurrentUser}) {
+  function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         setCurrentUser(null);
@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <nav className='navbar'>
-      <div class='title'>Readit</div>
+      <div className='title'>Readit</div>
         <div className='navbar-items'>
           <Link className='navbar-links' to="/questions">Open Questions</Link>
           <Link className='navbar-links' to="/myquestions">My Questions</Link>

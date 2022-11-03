@@ -64,7 +64,7 @@ const Signup = ({setCurrentUser}) => {
       <div className="signin">
         <p>Already have an account? Sign in</p>
         <button className="accountbtn">
-          <Link to="/">Login</Link>
+          <Link to="/landing">Login</Link>
         </button>
       </div>
     </div>

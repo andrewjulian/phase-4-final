@@ -11,6 +11,11 @@ import Navbar from './components/Navbar';
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null)
+  const [questions, setQuestions] = useState()
+
+  function addQuestion(newQuestion){
+    setQuestions(...questions, newQuestion)
+  }
 
   useEffect(()=> {
     fetch('/auth')
@@ -33,7 +38,7 @@ function App() {
     <div className="App">
       <Navbar setCurrentUser={setCurrentUser} />
       <Routes>
-        <Route path="/questions" element={<Questions setCurrentUser={setCurrentUser} />} />
+        <Route path="/questions" element={<Questions questions={questions} addQuestion={addQuestion} setCurrentUser={setCurrentUser} />} />
         <Route path="/myquestions" element={<MyQuestions setCurrentUser={setCurrentUser} />} />
         <Route path="/profile" element={<Profile setCurrentUser={setCurrentUser}/>} />
         <Route path="*" element={<Navigate to="/questions" replace />} />

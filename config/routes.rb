@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  resources :comments
+  resources :courses
+  resources :questions
   resources :users
 
   post "/login", to: "sessions#create"

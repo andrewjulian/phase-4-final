@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import QuestionCard from './QuestionCard';
 
 const Questions = ({questions, addQuestion}) => {
 
@@ -6,24 +7,35 @@ const Questions = ({questions, addQuestion}) => {
   const [details, setDetails] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [createQuestion, setCreateQuestion] = useState(false)
+  const [errors, setErrors] = useState([])
+  
+
 
   function toggleAddQuestion(){
     setCreateQuestion(!createQuestion)
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    const question = {
-      title: title,
-      details: details,
-      image_url: imageUrl,
-      open: true
-    }
-
-    //need to add post request to question controller
-
-    console.log(question)
+    fetch("/questions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: title,
+        details: details,
+        image_url: imageUrl,
+        open: true,
+      }),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((r) => addQuestion(r));
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
   }
 
   if(createQuestion === true) {
@@ -55,6 +67,9 @@ const Questions = ({questions, addQuestion}) => {
       <button onClick = {toggleAddQuestion}>
         Add a question!
       </button>
+      {/* <div>
+        questions.map((question) => <QuestionCard key={question.id} question={question} />)
+      </div> */}
     </div>
   )
 }

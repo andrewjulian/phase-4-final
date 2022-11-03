@@ -11,7 +11,7 @@ import Navbar from './components/Navbar';
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null)
-  const [questions, setQuestions] = useState()
+  const [questions, setQuestions] = useState([])
 
   function addQuestion(newQuestion){
     setQuestions(...questions, newQuestion)

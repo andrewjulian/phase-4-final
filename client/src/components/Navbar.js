@@ -1,6 +1,6 @@
 import React from 'react'
 import "../App.css"
-import {NavLink as Link} from 'react-router-dom'
+import {NavLink as Link, redirect} from 'react-router-dom'
 import logo from '../images/logo.png';
 
 const Navbar = ({setCurrentUser}) => {
@@ -9,8 +9,10 @@ const Navbar = ({setCurrentUser}) => {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         setCurrentUser(null);
+        redirect("/");
       }
     });
+    
   }
 
   return (

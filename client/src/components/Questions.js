@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import QuestionCard from './QuestionCard';
 
-const Questions = ({allQuestions, addQuestion}) => {
+const Questions = ({openQuestions, addQuestion}) => {
+
+  console.log("open questions in questions", openQuestions)
 
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
@@ -13,7 +15,7 @@ const Questions = ({allQuestions, addQuestion}) => {
     setCreateQuestion(!createQuestion)
   }
 
-  const displayQuestions = allQuestions.map((question, id) => {
+  const displayQuestions = openQuestions.map((question, id) => {
     return <QuestionCard question={question} key={id}/>
   })
 

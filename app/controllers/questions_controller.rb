@@ -4,13 +4,13 @@ class QuestionsController < ApplicationController
 
   def index
     questions = Question.all
-    render json: questions
+    render json: questions, include: :user
   end
 
   def create
     user = User.find_by(id: session[:user_id])
     question = user.questions.create!(question_params)
-    render json: question, status: :created
+    render json: question, include: :user, status: :created
   end
 
   private

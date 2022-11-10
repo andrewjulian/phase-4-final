@@ -11,10 +11,10 @@ import Navbar from './components/Navbar';
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null)
-  const [questions, setQuestions] = useState([])
+  const [allQuestions, setAllQuestions] = useState([])
 
   function addQuestion(newQuestion){
-    setQuestions(...questions, newQuestion)
+    setAllQuestions(...allQuestions, newQuestion)
   }
 
   useEffect(()=> {
@@ -24,6 +24,13 @@ function App() {
         res.json().then(user => setCurrentUser(user))
       }
     })
+
+    fetch("/questions")
+      .then((r) => r.json())
+      .then(data => {
+        console.log(data)
+        setAllQuestions(data)
+    });
   },[])
 
   if(!currentUser) return (
@@ -38,7 +45,7 @@ function App() {
     <div className="App">
       <Navbar setCurrentUser={setCurrentUser} />
       <Routes>
-        <Route path="/questions" element={<Questions questions={questions} addQuestion={addQuestion} setCurrentUser={setCurrentUser} />} />
+        <Route path="/questions" element={<Questions allQuestions={allQuestions} addQuestion={addQuestion} setCurrentUser={setCurrentUser} />} />
         <Route path="/myquestions" element={<MyQuestions setCurrentUser={setCurrentUser} />} />
         <Route path="/profile" element={<Profile setCurrentUser={setCurrentUser}/>} />
         <Route path="*" element={<Navigate to="/questions" replace />} />

@@ -1,9 +1,15 @@
 import React from 'react'
 
 
-const QuestionCard = () => {
+const QuestionCard = ({question}) => {
+
+  const {title, details, image_url} = question
   return (
-    <div>QuestionCard</div>
+    <div>
+      <h2>{title}</h2>
+      <p>{details}</p>
+      <p>{image_url}</p>
+    </div>
   )
 }
 

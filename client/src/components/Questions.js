@@ -1,19 +1,21 @@
 import React, {useState} from 'react'
 import QuestionCard from './QuestionCard';
 
-const Questions = ({questions, addQuestion}) => {
+const Questions = ({allQuestions, addQuestion}) => {
 
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [createQuestion, setCreateQuestion] = useState(false)
   const [errors, setErrors] = useState([])
-  
-
 
   function toggleAddQuestion(){
     setCreateQuestion(!createQuestion)
   }
+
+  const displayQuestions = allQuestions.map((question, id) => {
+    return <QuestionCard question={question} key={id}/>
+  })
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,14 +26,17 @@ const Questions = ({questions, addQuestion}) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: title,
-        details: details,
+        title,
+        details,
         image_url: imageUrl,
         open: true,
       }),
+
     }).then((r) => {
       if (r.ok) {
-        r.json().then((r) => addQuestion(r));
+        r.json().then((r) => {
+          console.log(r)
+          addQuestion(r)});
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -67,9 +72,7 @@ const Questions = ({questions, addQuestion}) => {
       <button onClick = {toggleAddQuestion}>
         Add a question!
       </button>
-      {/* <div>
-        questions.map((question) => <QuestionCard key={question.id} question={question} />)
-      </div> */}
+        {displayQuestions}
     </div>
   )
 }

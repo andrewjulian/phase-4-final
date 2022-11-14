@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-  #skip_before_action :authorize, only: [:create]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
   skip_before_action :authorize, only: [:create]
@@ -22,6 +21,6 @@ class UsersController < ApplicationController
   end
 
   def user_params()
-    params.permit(:id, :username, :password, :image_url, :display_name)
+    params.permit(:id, :username, :password, :display_name, :image_url )
   end
 end

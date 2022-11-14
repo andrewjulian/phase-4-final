@@ -1,7 +1,7 @@
 import './App.css';
 import {Routes, Route, Navigate} from "react-router-dom"
 import Landing from './components/Landing';
-import Questions from './components/Questions';
+import OpenQuestions from "./components/OpenQuestions"
 import MyQuestions from './components/MyQuestions';
 import Profile from './components/Profile';
 import Signup from './components/Signup';
@@ -16,7 +16,9 @@ function App() {
   const [openQuestions, setOpenQuestions] = useState([])
 
   function addQuestion(newQuestion){
-    setAllQuestions(...allQuestions, newQuestion)
+    setAllQuestions([...allQuestions, newQuestion])
+    updateQuestionSets();
+    console.log(allQuestions);
   }
 
   function updateQuestionSets(){
@@ -56,10 +58,10 @@ function App() {
     <div className="App">
       <Navbar setCurrentUser={setCurrentUser} />
       <Routes>
-        <Route path="/questions" element={<Questions openQuestions={openQuestions} addQuestion={addQuestion} setCurrentUser={setCurrentUser} />} />
+        <Route path="/openquestions" element={<OpenQuestions openQuestions={openQuestions} addQuestion={addQuestion} setCurrentUser={setCurrentUser} />} />
         <Route path="/myquestions" element={<MyQuestions userQuestions={userQuestions} setCurrentUser={setCurrentUser} />} />
         <Route path="/profile" element={<Profile setCurrentUser={setCurrentUser}/>} />
-        <Route path="*" element={<Navigate to="/questions" replace />} />
+        <Route path="*" element={<Navigate to="/openquestions" replace />} />
       </Routes>
     </div>
   );

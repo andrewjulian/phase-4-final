@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import QuestionCard from './QuestionCard';
 
-const Questions = ({openQuestions, addQuestion}) => {
+const OpenQuestions = ({openQuestions, addQuestion}) => {
 
-  console.log("open questions in questions", openQuestions)
+  //console.log("open questions in questions", openQuestions)
 
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
@@ -79,4 +79,4 @@ const Questions = ({openQuestions, addQuestion}) => {
   )
 }
 
-export default Questions
+export default OpenQuestions

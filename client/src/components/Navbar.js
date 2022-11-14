@@ -19,7 +19,7 @@ const Navbar = ({setCurrentUser}) => {
     <nav className='navbar'>
       <div className='title'>Readit</div>
         <div className='navbar-items'>
-          <Link className='navbar-links' to="/questions">Open Questions</Link>
+          <Link className='navbar-links' to="/openquestions">Open Questions</Link>
           <Link className='navbar-links' to="/myquestions">My Questions</Link>
           <Link className='profile-link' to="/profile">
             <img className='profile-logo' src={logo} alt="profile"/>

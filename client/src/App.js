@@ -15,8 +15,10 @@ function App() {
 
   function addQuestion(newQuestion){
     setAllQuestions([...allQuestions, newQuestion])
-    console.log(allQuestions);
+    setCurrentUser({...currentUser, questions:[...currentUser.questions, newQuestion]})
   }
+
+  console.log("userquestions?", currentUser)
 
   useEffect(()=> {
     fetch('/auth')
@@ -33,7 +35,6 @@ function App() {
     });
   },[])
 
-  console.log("all questions in app.js", allQuestions)
   if(!currentUser) return (
     <Routes>
       <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} />} />
@@ -48,7 +49,7 @@ function App() {
       <Routes>
         <Route path="/openquestions" element={<OpenQuestions allQuestions={allQuestions} addQuestion={addQuestion} />} />
         <Route path="/myquestions" element={<MyQuestions currentUser={currentUser} />} />
-        <Route path="/profile" element={<Profile setCurrentUser={setCurrentUser}/>} />
+        <Route path="/profile" element={<Profile/>} />
         <Route path="*" element={<Navigate to="/openquestions" replace />} />
       </Routes>
     </div>

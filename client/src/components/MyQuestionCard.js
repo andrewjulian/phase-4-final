@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
 
-
 const MyQuestionCard = ({question}) => {
 
   const [answered, setAnswered] = useState("Unanswered")
   
   function toggleAnswered(){ 
-    console.log("clicked!")
     setAnswered((answered === "Unanswered") ? "Answered" : "Unanswered")
   }
 
@@ -17,6 +15,9 @@ const MyQuestionCard = ({question}) => {
       <p>{details}</p>
       <button onClick={toggleAnswered}>
         {`${answered}`}
+      </button>
+      <button>
+        Delete
       </button>
     </div>
   )

@@ -10,8 +10,6 @@ const OpenQuestions = ({allQuestions, addQuestion}) => {
   const [createQuestion, setCreateQuestion] = useState(false)
   const [errors, setErrors] = useState([])
 
-  console.log("all questions open question", allQuestions)
-
   function toggleAddQuestion(){
     setCreateQuestion(!createQuestion)
   }
@@ -39,7 +37,6 @@ const OpenQuestions = ({allQuestions, addQuestion}) => {
     }).then((r) => {
       if (r.ok) {
         r.json().then((r) => {
-          console.log(r)
           addQuestion(r)});
       } else {
         r.json().then((err) => setErrors(err.errors));

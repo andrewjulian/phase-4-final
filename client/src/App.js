@@ -46,7 +46,7 @@ function App() {
       <Navbar setCurrentUser={setCurrentUser} />
       <Routes>
         <Route path="/openquestions" element={<OpenQuestions allQuestions={allQuestions} addQuestion={addQuestion} />} />
-        <Route path="/myquestions" element={<MyQuestions allQuestions={allQuestions} currentUser={currentUser} />} />
+        <Route path="/myquestions" element={<MyQuestions currentUser={currentUser} />} />
         <Route path="/profile" element={<Profile setCurrentUser={setCurrentUser}/>} />
         <Route path="*" element={<Navigate to="/openquestions" replace />} />
       </Routes>

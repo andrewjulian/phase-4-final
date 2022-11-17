@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import QuestionCard from './QuestionCard';
 
-const OpenQuestions = ({openQuestions, addQuestion}) => {
+const OpenQuestions = ({allQuestions, addQuestion}) => {
 
   //console.log("open questions in questions", openQuestions)
 
@@ -15,7 +15,8 @@ const OpenQuestions = ({openQuestions, addQuestion}) => {
     setCreateQuestion(!createQuestion)
   }
 
-  const displayQuestions = openQuestions.map((question, id) => {
+  const onlyOpenQuestions = allQuestions.filter((question) => question.open === true)
+  const displayOpenQuestions = onlyOpenQuestions.map((question, id) => {
     return <QuestionCard question={question} key={id}/>
   })
 
@@ -74,7 +75,7 @@ const OpenQuestions = ({openQuestions, addQuestion}) => {
       <button onClick = {toggleAddQuestion}>
         Add a question!
       </button>
-        {displayQuestions}
+        {displayOpenQuestions}
     </div>
   )
 }

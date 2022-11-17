@@ -12,22 +12,10 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState(null)
   const [allQuestions, setAllQuestions] = useState([])
-  const [userQuestions, setUserQuestions] = useState([])
-  const [openQuestions, setOpenQuestions] = useState([])
 
   function addQuestion(newQuestion){
     setAllQuestions([...allQuestions, newQuestion])
-    updateQuestionSets();
     console.log(allQuestions);
-  }
-
-  function updateQuestionSets(){
-    console.log("aq", allQuestions)
-    console.log("current user", currentUser)
-    setUserQuestions(allQuestions.filter(question => question.user === currentUser))
-    setOpenQuestions(allQuestions.filter(question => question.open === true))
-    console.log("uq", userQuestions)
-    console.log("oq", openQuestions)
   }
 
   useEffect(()=> {
@@ -42,7 +30,6 @@ function App() {
       .then((r) => r.json())
       .then(data => {
         setAllQuestions(data)
-        updateQuestionSets();
     });
   },[])
 
@@ -58,8 +45,8 @@ function App() {
     <div className="App">
       <Navbar setCurrentUser={setCurrentUser} />
       <Routes>
-        <Route path="/openquestions" element={<OpenQuestions openQuestions={openQuestions} addQuestion={addQuestion} setCurrentUser={setCurrentUser} />} />
-        <Route path="/myquestions" element={<MyQuestions userQuestions={userQuestions} setCurrentUser={setCurrentUser} />} />
+        <Route path="/openquestions" element={<OpenQuestions allQuestions={allQuestions} addQuestion={addQuestion} />} />
+        <Route path="/myquestions" element={<MyQuestions allQuestions={allQuestions} currentUser={currentUser} />} />
         <Route path="/profile" element={<Profile setCurrentUser={setCurrentUser}/>} />
         <Route path="*" element={<Navigate to="/openquestions" replace />} />
       </Routes>

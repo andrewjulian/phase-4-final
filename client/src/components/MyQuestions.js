@@ -2,13 +2,14 @@ import React from 'react'
 import QuestionCard from './QuestionCard'
 
 
-const MyQuestions = ({userQuestions}) => {
+const MyQuestions = ({allQuestions, currentUser}) => {
 
-  console.log("user questions in my question", userQuestions)
-
-  const displayMyQuestions = userQuestions.map((question, id) => {
-    return <QuestionCard question={question} key={id}/>
+  const onlyMyQuestions = allQuestions.filter((question) => question.user.id == currentUser.id)
+  
+  const displayMyQuestions = onlyMyQuestions.map((question, id) => {
+    return <QuestionCard question={question} key={id} />
   })
+  console.log("my questions", displayMyQuestions);
 
   return (
     <div>

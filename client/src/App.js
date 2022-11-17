@@ -33,6 +33,7 @@ function App() {
     });
   },[])
 
+  console.log("all questions in app.js", allQuestions)
   if(!currentUser) return (
     <Routes>
       <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} />} />

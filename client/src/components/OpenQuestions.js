@@ -10,6 +10,8 @@ const OpenQuestions = ({allQuestions, addQuestion}) => {
   const [createQuestion, setCreateQuestion] = useState(false)
   const [errors, setErrors] = useState([])
 
+  console.log("all questions open question", allQuestions)
+
   function toggleAddQuestion(){
     setCreateQuestion(!createQuestion)
   }

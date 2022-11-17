@@ -7,7 +7,6 @@ const OpenQuestions = ({allQuestions, addQuestion}) => {
 
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
   const [createQuestion, setCreateQuestion] = useState(false)
   const [errors, setErrors] = useState([])
 
@@ -31,7 +30,6 @@ const OpenQuestions = ({allQuestions, addQuestion}) => {
       body: JSON.stringify({
         title,
         details,
-        image_url: imageUrl,
         open: true,
       }),
 
@@ -58,9 +56,6 @@ const OpenQuestions = ({allQuestions, addQuestion}) => {
           <br/>
           <label>Question Details</label>
           <input type="text" value={details} placeholder="Enter Question Details" onChange={(e)=> setDetails(e.target.value)} required></input>
-          <br/>
-          <label>Optional Image URL</label>
-          <input type="text" value={imageUrl} placeholder="Add Optional Image" onChange={(e)=> setImageUrl(e.target.value)}></input>
           <br/>
           <button onSubmit={handleSubmit}>Ask!</button>
         </form>

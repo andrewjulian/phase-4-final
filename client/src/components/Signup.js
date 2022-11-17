@@ -6,7 +6,6 @@ const Signup = ({setCurrentUser}) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [errors, setErrors] = useState([])
 
@@ -16,8 +15,7 @@ const Signup = ({setCurrentUser}) => {
     const user = {
       username,
       password,
-      display_name: displayName,
-      image_url: imageUrl
+      display_name: displayName
     }
 
     fetch('/users',{
@@ -53,9 +51,6 @@ const Signup = ({setCurrentUser}) => {
         <label htmlFor="psw"><b>Display Name: </b></label>
         <input type="text" placeholder="Enter Display Name" value={displayName} onChange={(e)=> setDisplayName(e.target.value)} id="psw" required></input>
         <br/>
-        <br/>
-        <label htmlFor="psw"><b>Profile Picture URL: </b></label>
-        <input type="text" placeholder="Enter Image URL" value={imageUrl} onChange={(e)=> setImageUrl(e.target.value)} id="psw" required></input>
         <br/>
         <p>By creating an account you agree to our Terms & Privacy</p>
         <button type="submit" className="registerbtn">Register!</button>

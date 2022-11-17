@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.permit(:id, :title, :details, :image_url, :open)
+    params.permit(:id, :title, :details, :open)
   end
 
   def render_unprocessable_entity_response(invalid)

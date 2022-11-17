@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2022_11_03_205900) do
   create_table "comments", force: :cascade do |t|
     t.integer "question_id"
     t.string "response"
-    t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -35,7 +34,6 @@ ActiveRecord::Schema.define(version: 2022_11_03_205900) do
     t.integer "course_id"
     t.string "title"
     t.string "details"
-    t.string "image_url"
     t.boolean "open"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -44,7 +42,6 @@ ActiveRecord::Schema.define(version: 2022_11_03_205900) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-    t.string "image_url"
     t.string "display_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

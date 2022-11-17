@@ -1,3 +1,3 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :response, :image_url
+  attributes :id, :response
 end

@@ -14,7 +14,6 @@ const OpenQuestions = ({allQuestions, addQuestion}) => {
     setCreateQuestion(!createQuestion)
   }
 
-
   const onlyOpenQuestions = allQuestions.filter((question) => question.open === true)
 
   const displayOpenQuestions = onlyOpenQuestions.map((question, id) => {

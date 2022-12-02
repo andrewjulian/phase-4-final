@@ -18,6 +18,7 @@ function App() {
     setCurrentUser({...currentUser, questions:[...currentUser.questions, newQuestion]})
   }
 
+
   console.log("userquestions?", currentUser)
 
   useEffect(()=> {

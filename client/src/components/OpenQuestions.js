@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 import QuestionCard from './QuestionCard';
 
-const OpenQuestions = ({allQuestions, addQuestion}) => {
+const OpenQuestions = ({allQuestions, addQuestion, addComment}) => {
 
-  //console.log("open questions in questions", openQuestions)
+  
 
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
-  const [course, setCourse] = useState("");
+  //const [course, setCourse] = useState("");
   const [createQuestion, setCreateQuestion] = useState(false)
   const [errors, setErrors] = useState([])
 
@@ -16,9 +16,11 @@ const OpenQuestions = ({allQuestions, addQuestion}) => {
   }
 
   const onlyOpenQuestions = allQuestions.filter((question) => question.open === true)
+  
+  console.log("open questions in questions", allQuestions)
 
   const displayOpenQuestions = onlyOpenQuestions.map((question, id) => {
-    return <QuestionCard question={question} key={id}/>
+    return <QuestionCard addComment={addComment} question={question} key={id}/>
   })
 
   function handleSubmit(e) {

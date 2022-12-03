@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   def index
     questions = Question.all
-    render json: questions, include: :user
+    render json: questions, include: :user, include: :comments
   end
 
   def create

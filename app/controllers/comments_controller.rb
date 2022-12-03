@@ -4,13 +4,13 @@ class CommentsController < ApplicationController
 
   def create
     Comment.create!(comment_params)
-    render json: comment, include: :question, status: :created
+    render json: comment, status: :created
   end
 
   private
 
   def comment_params
-    params.permit(:id, :question_id, :response, :open)
+    params.permit(:id, :question_id, :response)
   end
 
   def render_unprocessable_entity_response(invalid)

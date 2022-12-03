@@ -34,6 +34,7 @@ function App() {
       .then(data => {
         setAllQuestions(data)
     });
+    
   },[])
 
   if(!currentUser) return (

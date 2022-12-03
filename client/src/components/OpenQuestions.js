@@ -7,6 +7,7 @@ const OpenQuestions = ({allQuestions, addQuestion}) => {
 
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
+  const [course, setCourse] = useState("");
   const [createQuestion, setCreateQuestion] = useState(false)
   const [errors, setErrors] = useState([])
 
@@ -57,13 +58,14 @@ const OpenQuestions = ({allQuestions, addQuestion}) => {
           <label>Question Details</label>
           <input type="text" value={details} placeholder="Enter Question Details" onChange={(e)=> setDetails(e.target.value)} required></input>
           <br/>
+          <label>Course</label>
+          <input type="text" value={details} placeholder="Enter Question Details" onChange={(e)=> setDetails(e.target.value)} required></input>
           <button onSubmit={handleSubmit}>Ask!</button>
         </form>
       </div>
     )
   }
 
-  //this will render questions via question cards mapped from questions prop that is passed from app.js
   return (
     <div>
       <p>Questions</p>

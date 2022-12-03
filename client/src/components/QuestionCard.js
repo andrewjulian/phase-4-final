@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
+import CommentText from './CommentText';
 
 const QuestionCard = ({question, addComment}) => {
 
   const {title, details} = question
 
   const [createComment, setCreateComment] = useState(false);
+  const [seeComments, setSeeComments] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -12,6 +14,15 @@ const QuestionCard = ({question, addComment}) => {
   function toggleComment() {
     setCreateComment(!createComment)
   }
+
+  function toggleSeeComments(){
+    setSeeComments(!seeComments)
+    console.log("clicked", seeComments)
+  }
+
+  const questionComments = question.comments.map((comment, id) => {
+    return <CommentText comment={comment} key={id} />
+  })
 
   function handleCommentSubmit(e){
     e.preventDefault();
@@ -54,12 +65,30 @@ const QuestionCard = ({question, addComment}) => {
     )
   }
 
+  if (seeComments === true) {
+    return (
+    <>
+      <h2>{title}</h2>
+      <p>{details}</p>
+      {questionComments}
+      <button onClick={toggleComment}>
+        Add Comment
+      </button>
+      <button onClick={toggleSeeComments}>
+        See Comments
+      </button>
+    </>
+  )}
+
   return (
     <div>
       <h2>{title}</h2>
       <p>{details}</p>
       <button onClick={toggleComment}>
         Add Comment
+      </button>
+      <button onClick={toggleSeeComments}>
+        See Comments
       </button>
     </div>
   )

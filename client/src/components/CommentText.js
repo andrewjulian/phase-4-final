@@ -6,7 +6,7 @@ const CommentText = ({comment}) => {
 
   return (
     <div>
-      <p>response</p>
+      <p>{response}</p>
     </div>
   )
 }

@@ -17,8 +17,6 @@ const OpenQuestions = ({allQuestions, addQuestion, addComment}) => {
 
   const onlyOpenQuestions = allQuestions.filter((question) => question.open === true)
   
-  console.log("open questions in questions", allQuestions)
-
   const displayOpenQuestions = onlyOpenQuestions.map((question, id) => {
     return <QuestionCard addComment={addComment} question={question} key={id}/>
   })

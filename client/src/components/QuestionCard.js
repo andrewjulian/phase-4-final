@@ -3,7 +3,7 @@ import CommentText from './CommentText';
 
 const QuestionCard = ({question, addComment}) => {
 
-  const {title, details} = question
+  const {title, details, comments} = question
 
   const [createComment, setCreateComment] = useState(false);
   const [seeComments, setSeeComments] = useState(false);
@@ -17,7 +17,6 @@ const QuestionCard = ({question, addComment}) => {
 
   function toggleSeeComments(){
     setSeeComments(!seeComments)
-    console.log("clicked", seeComments)
   }
 
   const questionComments = question.comments.map((comment, id) => {
@@ -52,8 +51,8 @@ const QuestionCard = ({question, addComment}) => {
       <>
         <h2>{title}</h2>
         <p>{details}</p>
+        {questionComments}
         <form onSubmit={handleCommentSubmit}>
-          <label>Comment </label>
           <input type="text" value={commentText} placeholder="Enter Comment" onChange={(e)=> setCommentText(e.target.value)} required></input>
           <br/>
           <button>Comment!</button>
@@ -63,22 +62,35 @@ const QuestionCard = ({question, addComment}) => {
         </button>
       </>
     )
-  }
-
-  if (seeComments === true) {
+  } else if (seeComments === true && comments.length !== 0) {
     return (
-    <>
-      <h2>{title}</h2>
-      <p>{details}</p>
-      {questionComments}
-      <button onClick={toggleComment}>
-        Add Comment
-      </button>
-      <button onClick={toggleSeeComments}>
-        See Comments
-      </button>
-    </>
-  )}
+      <>
+        <h2>{title}</h2>
+        <p>{details}</p>
+        {questionComments}
+        <button onClick={toggleComment}>
+          Add Comment
+        </button>
+        <button onClick={toggleSeeComments}>
+          See Comments
+        </button>
+      </>
+    )
+  } else if (seeComments === true && comments.length === 0){
+      return(
+        <>
+          <h2>{title}</h2>
+          <p>{details}</p>
+          <h4>**No Comments Yet**</h4>
+          <button onClick={toggleComment}>
+            Add Comment
+          </button>
+          <button onClick={toggleSeeComments}>
+            See Comments
+          </button>
+        </>
+      )
+  }
 
   return (
     <div>

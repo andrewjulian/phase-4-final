@@ -10,8 +10,9 @@ import Navbar from './components/Navbar';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState(null)
-  const [allQuestions, setAllQuestions] = useState([])
+  const [currentUser, setCurrentUser] = useState(null);
+  const [allQuestions, setAllQuestions] = useState([]);
+  const [courseList, setCourseList] = useState([]);
 
   function addQuestion(newQuestion){
     setAllQuestions([...allQuestions, newQuestion])
@@ -41,6 +42,13 @@ function App() {
         setAllQuestions(data)
     });
 
+    fetch("/courses")
+    .then((r) => r.json())
+      .then(data => {
+        setCourseList(data)
+        console.log(data)
+    });
+
   },[])
 
   if(!currentUser) return (
@@ -55,7 +63,7 @@ function App() {
     <div className="App">
       <Navbar setCurrentUser={setCurrentUser} />
       <Routes>
-        <Route path="/openquestions" element={<OpenQuestions allQuestions={allQuestions} addQuestion={addQuestion} addComment={addComment} />} />
+        <Route path="/openquestions" element={<OpenQuestions allQuestions={allQuestions} addQuestion={addQuestion} addComment={addComment} courseList={courseList} />} />
         <Route path="/myquestions" element={<MyQuestions currentUser={currentUser} />} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="*" element={<Navigate to="/openquestions" replace />} />

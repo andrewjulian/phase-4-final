@@ -1,18 +1,26 @@
 import React, {useState} from 'react'
 import QuestionCard from './QuestionCard';
 
-const OpenQuestions = ({allQuestions, addQuestion, addComment}) => {
-
-  
+const OpenQuestions = ({allQuestions, addQuestion, addComment, courseList}) => {
 
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
-  //const [course, setCourse] = useState("");
+  const [course, setCourse] = useState();
   const [createQuestion, setCreateQuestion] = useState(false)
   const [errors, setErrors] = useState([])
 
+  const listofCourses = courseList.map((course, id) => {
+    return (
+      <option key={id} value={course.id}>{course.course_name}</option>
+    )
+  });
+
   function toggleAddQuestion(){
     setCreateQuestion(!createQuestion)
+  }
+
+  function selectCourse(e){
+    setCourse(e.target.value)
   }
 
   const onlyOpenQuestions = allQuestions.filter((question) => question.open === true)
@@ -33,6 +41,7 @@ const OpenQuestions = ({allQuestions, addQuestion, addComment}) => {
         title,
         details,
         open: true,
+        course_id: course
       }),
 
     }).then((r) => {
@@ -43,6 +52,11 @@ const OpenQuestions = ({allQuestions, addQuestion, addComment}) => {
         r.json().then((err) => setErrors(err.errors));
       }
     });
+
+    setTitle("");
+    setDetails("");
+    setCourse(null)
+    setCreateQuestion(false);
   }
 
   if(createQuestion === true) {
@@ -59,7 +73,11 @@ const OpenQuestions = ({allQuestions, addQuestion, addComment}) => {
           <input type="text" value={details} placeholder="Enter Question Details" onChange={(e)=> setDetails(e.target.value)} required></input>
           <br/>
           <label>Course</label>
-          <input type="text" value={details} placeholder="Enter Question Details" onChange={(e)=> setDetails(e.target.value)} required></input>
+          <select onChange={selectCourse} defaultValue="" >
+            <option value="" disabled>Choose a Class...</option>
+            {listofCourses}
+          </select>
+          <br/>
           <button onSubmit={handleSubmit}>Ask!</button>
         </form>
       </div>

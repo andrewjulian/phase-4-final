@@ -10,13 +10,13 @@ class QuestionsController < ApplicationController
   def create
     user = User.find_by(id: session[:user_id])
     question = user.questions.create!(question_params)
-    render json: question, include: :user, status: :created
+    render json: question, include: :user, include: :comments, status: :created
   end
 
   private
 
   def question_params
-    params.permit(:id, :title, :details, :open)
+    params.permit(:id, :title, :details, :course_id, :open)
   end
 
   def render_unprocessable_entity_response(invalid)

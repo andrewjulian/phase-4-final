@@ -6,5 +6,6 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
 
   has_many :questions
+  has_many :courses, through: :questions
   
 end

@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   def create
-    Comment.create!(comment_params)
+    comment = Comment.create!(comment_params)
     render json: comment, status: :created
   end
 

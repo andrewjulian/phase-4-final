@@ -18,8 +18,14 @@ function App() {
     setCurrentUser({...currentUser, questions:[...currentUser.questions, newQuestion]})
   }
 
+  //need to add comment to the specific question
+  //return from POST should have question_id to help find that question
+  //add comment to question comments
+  //upate questions in state?
 
-  console.log("userquestions?", currentUser)
+  function addComment(newComment){
+    console.log("Add comment function called")
+  }
 
   useEffect(()=> {
     fetch('/auth')
@@ -34,7 +40,7 @@ function App() {
       .then(data => {
         setAllQuestions(data)
     });
-    
+
   },[])
 
   if(!currentUser) return (
@@ -49,7 +55,7 @@ function App() {
     <div className="App">
       <Navbar setCurrentUser={setCurrentUser} />
       <Routes>
-        <Route path="/openquestions" element={<OpenQuestions allQuestions={allQuestions} addQuestion={addQuestion} />} />
+        <Route path="/openquestions" element={<OpenQuestions allQuestions={allQuestions} addQuestion={addQuestion} addComment={addComment} />} />
         <Route path="/myquestions" element={<MyQuestions currentUser={currentUser} />} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="*" element={<Navigate to="/openquestions" replace />} />

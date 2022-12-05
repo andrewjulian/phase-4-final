@@ -38,7 +38,7 @@ const QuestionCard = ({question, addComment}) => {
     }).then((r) => {
       if (r.ok) {
         r.json().then((r) => {
-          addComment()});
+          addComment(r)});
       } else {
         r.json().then((err) => setErrors(err.errors));
       }

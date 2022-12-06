@@ -95,6 +95,7 @@ function App() {
             <MyQuestions
               currentUser={currentUser}
               allQuestions={allQuestions}
+              addComment={addComment}
               handleDeleteQuestion={handleDeleteQuestion}
             />
           }

@@ -72,7 +72,7 @@ const QuestionCard = ({ question, addComment }) => {
         <p>{details}</p>
         {questionComments}
         <button onClick={toggleComment}>Add Comment</button>
-        <button onClick={toggleSeeComments}>See Comments</button>
+        <button onClick={toggleSeeComments}>Hide Comments</button>
       </>
     );
   } else if (seeComments === true && comments.length === 0) {
@@ -82,7 +82,7 @@ const QuestionCard = ({ question, addComment }) => {
         <p>{details}</p>
         <h4>**No Comments Yet**</h4>
         <button onClick={toggleComment}>Add Comment</button>
-        <button onClick={toggleSeeComments}>See Comments</button>
+        <button onClick={toggleSeeComments}>Hide Comments</button>
       </>
     );
   }

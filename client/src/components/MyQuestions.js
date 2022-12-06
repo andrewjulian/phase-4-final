@@ -1,7 +1,12 @@
 import React from "react";
 import MyQuestionCard from "./MyQuestionCard";
 
-const MyQuestions = ({ currentUser, allQuestions, handleDeleteQuestion }) => {
+const MyQuestions = ({
+  currentUser,
+  allQuestions,
+  addComment,
+  handleDeleteQuestion,
+}) => {
   if (currentUser.questions.length > 0) {
     const findMyQuestions = allQuestions.filter(
       (question) => question.user.id === currentUser.id
@@ -12,6 +17,7 @@ const MyQuestions = ({ currentUser, allQuestions, handleDeleteQuestion }) => {
         <MyQuestionCard
           question={question}
           handleDeleteQuestion={handleDeleteQuestion}
+          addComment={addComment}
           key={id}
         />
       );

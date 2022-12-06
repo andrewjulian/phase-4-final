@@ -22,4 +22,5 @@ class QuestionsController < ApplicationController
   def render_unprocessable_entity_response(invalid)
     render json: { errors: ["Invalid Data"] }, status: :unprocessable_entity
   end
+  
 end

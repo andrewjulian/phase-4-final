@@ -6,7 +6,6 @@ const Landing = ({setCurrentUser}) => {
   
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  //const [login, setLogin] = useState("")
   const [errors, setErrors] = useState([])
 
   function handleUsernameChange(event){
@@ -32,7 +31,7 @@ const Landing = ({setCurrentUser}) => {
       if (r.ok) {
         r.json().then((user) => setCurrentUser(user));
       } else {
-        console.log(errors)
+        setErrors(errors)
       }
     });
 

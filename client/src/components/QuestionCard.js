@@ -43,6 +43,8 @@ const QuestionCard = ({ question, addComment }) => {
     });
 
     setCommentText("");
+    setSeeComments(true);
+    setCreateComment(false);
   }
 
   if (createComment === true) {

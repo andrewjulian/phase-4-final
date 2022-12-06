@@ -48,6 +48,8 @@ const MyQuestionCard = ({ question, addComment, handleDeleteQuestion }) => {
     });
 
     setCommentText("");
+    setSeeComments(true);
+    setCreateComment(false);
   }
 
   function handleDeleteClick() {

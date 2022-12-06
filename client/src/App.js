@@ -48,7 +48,6 @@ function App() {
     );
 
     findUpdateQuestion.comments.push(newComment);
-    console.log("findUpdateQuestion", findUpdateQuestion);
 
     const updateQuestions = allQuestions.map((question) =>
       question.id !== newComment.question.id ? question : findUpdateQuestion
@@ -63,13 +62,6 @@ function App() {
     );
     setAllQuestions(updateAllQuestions);
   }
-
-  //add comment to course
-  //find course obj you want to
-  //find the question where you want to add comment
-  //spread previous comments, add new comment
-
-  //add comment to all classes
 
   if (!currentUser)
     return (

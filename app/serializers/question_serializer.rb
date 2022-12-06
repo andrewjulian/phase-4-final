@@ -3,5 +3,5 @@ class QuestionSerializer < ActiveModel::Serializer
   belongs_to :course
   has_many :comments
 
-  attributes :id, :title, :details, :open, :course_id, :comments
+  attributes :id, :title, :details, :open, :course_id, :comments, :user
 end

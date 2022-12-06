@@ -1,25 +1,26 @@
-import React from 'react'
-import MyQuestionCard from './MyQuestionCard'
+import React from "react";
+import MyQuestionCard from "./MyQuestionCard";
 
-const MyQuestions = ({currentUser}) => {
-
+const MyQuestions = ({ currentUser, allQuestions, handleDeleteQuestion }) => {
   if (currentUser.questions.length > 0) {
-    const displayMyQuestions = currentUser.questions.map((question, id) => {
-      return <MyQuestionCard question={question} key={id} />
-    })
+    const findMyQuestions = allQuestions.filter(
+      (question) => question.user.id === currentUser.id
+    );
 
-    return (
-      <div>
-        {displayMyQuestions}
-      </div>
-    )
+    const displayMyQuestions = findMyQuestions.map((question, id) => {
+      return (
+        <MyQuestionCard
+          question={question}
+          handleDeleteQuestion={handleDeleteQuestion}
+          key={id}
+        />
+      );
+    });
+
+    return <div>{displayMyQuestions}</div>;
   }
 
-  return (
-    <div>
-      No Question Yet
-    </div>
-  )
-}
+  return <div>No Question Yet</div>;
+};
 
-export default MyQuestions
+export default MyQuestions;

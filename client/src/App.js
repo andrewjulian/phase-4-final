@@ -24,16 +24,15 @@ function App() {
       .then((r) => r.json())
       .then((data) => {
         setCourseList(data);
+        const tempQuestionList = [];
         data.map((course) => {
-          course.questions.map((question) => {
-            tempQuestionList.push(question);
+          return course.questions.map((question) => {
+            return tempQuestionList.push(question);
           });
         });
         setAllQuestions(tempQuestionList);
       });
   }, []);
-
-  const tempQuestionList = [];
 
   function addQuestion(newQuestion) {
     setAllQuestions([...allQuestions, newQuestion]);
@@ -50,6 +49,15 @@ function App() {
   function addComment(newComment) {
     console.log("Add comment function called", newComment);
   }
+
+  function handleDeleteQuestion(removedAssignment) {
+    const updateAllQuestions = allQuestions.filter(
+      (question) => question.id !== removedAssignment.id
+    );
+    setAllQuestions(updateAllQuestions);
+  }
+
+  console.log("all questions", allQuestions);
 
   if (!currentUser)
     return (
@@ -83,7 +91,13 @@ function App() {
         />
         <Route
           path="/myquestions"
-          element={<MyQuestions currentUser={currentUser} />}
+          element={
+            <MyQuestions
+              currentUser={currentUser}
+              allQuestions={allQuestions}
+              handleDeleteQuestion={handleDeleteQuestion}
+            />
+          }
         />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Navigate to="/profile" replace />} />

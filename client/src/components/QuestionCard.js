@@ -1,29 +1,27 @@
-import React, {useState} from 'react'
-import CommentText from './CommentText';
+import React, { useState } from "react";
+import CommentText from "./CommentText";
 
-const QuestionCard = ({question, addComment}) => {
-
-  const {title, details, comments} = question
+const QuestionCard = ({ question, addComment }) => {
+  const { title, details, comments } = question;
 
   const [createComment, setCreateComment] = useState(false);
   const [seeComments, setSeeComments] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [errors, setErrors] = useState([]);
 
-
   function toggleComment() {
-    setCreateComment(!createComment)
+    setCreateComment(!createComment);
   }
 
-  function toggleSeeComments(){
-    setSeeComments(!seeComments)
+  function toggleSeeComments() {
+    setSeeComments(!seeComments);
   }
 
   const questionComments = question.comments.map((comment, id) => {
-    return <CommentText comment={comment} key={id} />
-  })
+    return <CommentText comment={comment} key={id} />;
+  });
 
-  function handleCommentSubmit(e){
+  function handleCommentSubmit(e) {
     e.preventDefault();
     fetch("/comments", {
       method: "POST",
@@ -37,7 +35,8 @@ const QuestionCard = ({question, addComment}) => {
     }).then((r) => {
       if (r.ok) {
         r.json().then((r) => {
-          addComment(r)});
+          addComment(r);
+        });
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -47,63 +46,55 @@ const QuestionCard = ({question, addComment}) => {
   }
 
   if (createComment === true) {
-    return(
+    return (
       <>
         <h2>{title}</h2>
         <p>{details}</p>
         {questionComments}
         <form onSubmit={handleCommentSubmit}>
-          <input type="text" value={commentText} placeholder="Enter Comment" onChange={(e)=> setCommentText(e.target.value)} required></input>
-          <br/>
+          <input
+            type="text"
+            value={commentText}
+            placeholder="Enter Comment"
+            onChange={(e) => setCommentText(e.target.value)}
+            required
+          ></input>
+          <br />
           <button>Comment!</button>
         </form>
-        <button onClick={toggleComment}>
-          Nevermind
-        </button>
+        <button onClick={toggleComment}>Nevermind</button>
       </>
-    )
+    );
   } else if (seeComments === true && comments.length !== 0) {
     return (
       <>
         <h2>{title}</h2>
         <p>{details}</p>
         {questionComments}
-        <button onClick={toggleComment}>
-          Add Comment
-        </button>
-        <button onClick={toggleSeeComments}>
-          See Comments
-        </button>
+        <button onClick={toggleComment}>Add Comment</button>
+        <button onClick={toggleSeeComments}>See Comments</button>
       </>
-    )
-  } else if (seeComments === true && comments.length === 0){
-      return(
-        <>
-          <h2>{title}</h2>
-          <p>{details}</p>
-          <h4>**No Comments Yet**</h4>
-          <button onClick={toggleComment}>
-            Add Comment
-          </button>
-          <button onClick={toggleSeeComments}>
-            See Comments
-          </button>
-        </>
-      )
+    );
+  } else if (seeComments === true && comments.length === 0) {
+    return (
+      <>
+        <h2>{title}</h2>
+        <p>{details}</p>
+        <h4>**No Comments Yet**</h4>
+        <button onClick={toggleComment}>Add Comment</button>
+        <button onClick={toggleSeeComments}>See Comments</button>
+      </>
+    );
   }
 
   return (
     <div>
       <h2>{title}</h2>
       <p>{details}</p>
-      <button onClick={toggleComment}>
-        Add Comment
-      </button>
-      <button onClick={toggleSeeComments}>
-        See Comments
-      </button>
+      <button onClick={toggleComment}>Add Comment</button>
+      <button onClick={toggleSeeComments}>See Comments</button>
     </div>
-  )
-}
+  );
+};
 
-export default QuestionCard
+export default QuestionCard;

@@ -13,6 +13,12 @@ class QuestionsController < ApplicationController
     render json: question, include: :user, include: :comments, status: :created
   end
 
+  def destroy
+    question = Question.find_by(id: params[:id])
+    question.destroy
+    render json: question
+  end
+
   private
 
   def question_params

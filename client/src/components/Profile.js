@@ -1,12 +1,14 @@
-import React from 'react'
+import React from "react";
 
+const Profile = ({ currentUser }) => {
+  const { username, display_name } = currentUser;
 
-const Profile = () => {
   return (
-    <div>
-      Profile
-    </div>
-  )
-}
+    <>
+      <h2>{display_name}</h2>
+      <h4>{username}</h4>
+    </>
+  );
+};
 
-export default Profile
+export default Profile;

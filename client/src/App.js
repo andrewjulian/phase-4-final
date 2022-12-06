@@ -104,8 +104,14 @@ function App() {
             />
           }
         />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="*" element={<Navigate to="/profile" replace />} />
+        <Route
+          path="/profile"
+          element={<Profile currentUser={currentUser} />}
+        />
+        <Route
+          path="*"
+          element={<Navigate to="/profile" currentUser={currentUser} replace />}
+        />
       </Routes>
     </div>
   );

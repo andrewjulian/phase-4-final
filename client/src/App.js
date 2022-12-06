@@ -36,18 +36,25 @@ function App() {
 
   function addQuestion(newQuestion) {
     setAllQuestions([...allQuestions, newQuestion]);
-    setCurrentUser({
+    /* setCurrentUser({
       ...currentUser,
       questions: [...currentUser.questions, newQuestion],
-    });
+    }); */
   }
 
-  //need to add comment to the specific question
-  //return from POST should have question_id to help find that question
-  //add comment to question comments
-  //upate questions in state?
   function addComment(newComment) {
-    console.log("Add comment function called", newComment);
+    const findUpdateQuestion = allQuestions.find(
+      (question) => question.id === newComment.question.id
+    );
+
+    findUpdateQuestion.comments.push(newComment);
+    console.log("findUpdateQuestion", findUpdateQuestion);
+
+    const updateQuestions = allQuestions.map((question) =>
+      question.id !== newComment.question.id ? question : findUpdateQuestion
+    );
+
+    setAllQuestions(updateQuestions);
   }
 
   function handleDeleteQuestion(removedAssignment) {
@@ -57,7 +64,12 @@ function App() {
     setAllQuestions(updateAllQuestions);
   }
 
-  console.log("all questions", allQuestions);
+  //add comment to course
+  //find course obj you want to
+  //find the question where you want to add comment
+  //spread previous comments, add new comment
+
+  //add comment to all classes
 
   if (!currentUser)
     return (

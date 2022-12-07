@@ -7,6 +7,11 @@ class CommentsController < ApplicationController
     render json: comment, status: :created
   end
 
+  def index
+    comments = Comment.all
+    render json: comment
+  end
+
   private
 
   def comment_params

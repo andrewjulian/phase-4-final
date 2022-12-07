@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import CommentText from "./CommentText";
 
-const MyQuestionCard = ({ question, addComment, handleDeleteQuestion }) => {
-  const { id, title, details, comments } = question;
+const MyQuestionCard = ({
+  question,
+  addComment,
+  handleDeleteQuestion,
+  updateAnsweredQuestions,
+}) => {
+  const { id, title, details, comments, open } = question;
 
-  const [answered, setAnswered] = useState("Unanswered");
+  const [isOpen, setIsOpen] = useState(open);
   const [createComment, setCreateComment] = useState(false);
   const [seeComments, setSeeComments] = useState(false);
   const [commentText, setCommentText] = useState("");
@@ -22,10 +27,27 @@ const MyQuestionCard = ({ question, addComment, handleDeleteQuestion }) => {
     return <CommentText comment={comment} key={id} />;
   });
 
-  function toggleAnswered() {
-    setAnswered(answered === "Unanswered" ? "Answered" : "Unanswered");
+  function handleUpdateQuestion(e) {
+    e.preventDefault();
+
+    fetch(`/questions/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        open: !isOpen,
+      }),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        updateAnsweredQuestions(data);
+      });
+
+    setIsOpen(!isOpen);
   }
 
+  ///---
   function handleCommentSubmit(e) {
     e.preventDefault();
     fetch("/comments", {
@@ -111,7 +133,9 @@ const MyQuestionCard = ({ question, addComment, handleDeleteQuestion }) => {
       <p>{details}</p>
       <button onClick={toggleComment}>Add Comment</button>
       <button onClick={toggleSeeComments}>See Comments</button>
-      <button onClick={toggleAnswered}>{`${answered}`}</button>
+      <button
+        onClick={handleUpdateQuestion}
+      >{`Open to Answer ${isOpen}`}</button>
       <button onClick={handleDeleteClick}>Delete</button>
     </div>
   );

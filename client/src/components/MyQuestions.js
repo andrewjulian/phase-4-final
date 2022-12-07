@@ -6,6 +6,7 @@ const MyQuestions = ({
   allQuestions,
   addComment,
   handleDeleteQuestion,
+  updateAnsweredQuestions,
 }) => {
   if (currentUser.questions.length > 0) {
     const findMyQuestions = allQuestions.filter(
@@ -17,6 +18,7 @@ const MyQuestions = ({
         <MyQuestionCard
           question={question}
           handleDeleteQuestion={handleDeleteQuestion}
+          updateAnsweredQuestions={updateAnsweredQuestions}
           addComment={addComment}
           key={id}
         />

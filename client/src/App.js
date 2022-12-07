@@ -56,6 +56,13 @@ function App() {
     setAllQuestions(updateQuestions);
   }
 
+  function updateAnsweredQuestions(updatedQuestion) {
+    const updatedOpenQuestions = allQuestions.map((question) =>
+      question.id !== updatedQuestion.id ? question : updatedQuestion
+    );
+    setAllQuestions(updatedOpenQuestions);
+  }
+
   function handleDeleteQuestion(removedAssignment) {
     const updateAllQuestions = allQuestions.filter(
       (question) => question.id !== removedAssignment.id
@@ -101,6 +108,7 @@ function App() {
               allQuestions={allQuestions}
               addComment={addComment}
               handleDeleteQuestion={handleDeleteQuestion}
+              updateAnsweredQuestions={updateAnsweredQuestions}
             />
           }
         />

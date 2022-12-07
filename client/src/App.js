@@ -34,7 +34,6 @@ function App() {
       .then((r) => r.json())
       .then((data) => {
         setAllQuestions(data);
-        console.log(data);
       });
   }, []);
 

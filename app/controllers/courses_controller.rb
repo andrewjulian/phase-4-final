@@ -7,6 +7,11 @@ class CoursesController < ApplicationController
     render json: course, include: :questions, status: :created
   end
 
+  def show
+    course = Course.find_by(id: params[:id])
+    render json: course
+  end
+
   def index
     courses = Course.all
     render json: courses, include: :questions

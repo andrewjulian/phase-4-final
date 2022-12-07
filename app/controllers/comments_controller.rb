@@ -12,6 +12,11 @@ class CommentsController < ApplicationController
     render json: comment
   end
 
+  def show
+    comment = Comment.find_by(id: params[:id])
+    render json: comment
+  end
+
   private
 
   def comment_params

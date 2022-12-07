@@ -15,12 +15,8 @@ class QuestionsController < ApplicationController
 
   def update
     question = Question.find_by(id: params[:id])
-    if question.user_id === user.id
-      question.update(question_params)
-      render json: question
-    else
-      render json: { error: "Not your review!" }, status: :unprocessable_entity
-    end
+    question.update(question_params)
+    render json: question
   end
 
   def destroy

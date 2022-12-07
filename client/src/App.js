@@ -19,24 +19,23 @@ function App() {
         res.json().then((user) => setCurrentUser(user));
       }
     });
+  }, []);
 
+  useEffect(() => {
     fetch("/courses")
       .then((r) => r.json())
       .then((data) => {
         setCourseList(data);
-        updateAllQuestions(data);
       });
+  }, []);
 
-    const tempQuestionList = [];
-
-    function updateAllQuestions(data) {
-      data.map((course) => {
-        return course.questions.map((question) => {
-          return tempQuestionList.push(question);
-        });
+  useEffect(() => {
+    fetch("/questions")
+      .then((r) => r.json())
+      .then((data) => {
+        setAllQuestions(data);
+        console.log(data);
       });
-      setAllQuestions(tempQuestionList);
-    }
   }, []);
 
   function addQuestion(newQuestion) {

@@ -24,15 +24,20 @@ function App() {
       .then((r) => r.json())
       .then((data) => {
         setCourseList(data);
-        const tempQuestionList = [];
-        data.map((course) => {
-          return course.questions.map((question) => {
-            return tempQuestionList.push(question);
-          });
-        });
-        setAllQuestions(tempQuestionList);
+        updateAllQuestions();
       });
   }, []);
+
+  const tempQuestionList = [];
+
+  function updateAllQuestions() {
+    courseList.map((course) => {
+      return course.questions.map((question) => {
+        return tempQuestionList.push(question);
+      });
+    });
+    setAllQuestions(tempQuestionList);
+  }
 
   function addQuestion(newQuestion) {
     setAllQuestions([...allQuestions, newQuestion]);

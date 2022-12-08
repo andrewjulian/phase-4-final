@@ -2,9 +2,6 @@ class QuestionsController < ApplicationController
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
-  skip_before_action :authorize, only: [:index]
-
-
   def index
     questions = Question.all
     render json: questions, include: :user, include: :comments

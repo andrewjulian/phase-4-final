@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import QuestionCard from "./QuestionCard";
 
-const OpenQuestions = ({
-  allQuestions,
-  addQuestion,
-  addComment,
-  courseList,
-}) => {
+const OpenQuestions = ({ allQuestions, addQuestion, addComment }) => {
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
   const [course, setCourse] = useState();
   const [createQuestion, setCreateQuestion] = useState(false);
+  const [courseList, setCourseList] = useState([]);
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    fetch("/courses")
+      .then((r) => r.json())
+      .then((data) => {
+        setCourseList(data);
+      });
+  }, []);
 
   const listofCourses = courseList.map((course, id) => {
     return (

@@ -11,7 +11,6 @@ import Navbar from "./components/Navbar";
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [allQuestions, setAllQuestions] = useState([]);
-  const [courseList, setCourseList] = useState([]);
 
   useEffect(() => {
     fetch("/auth").then((res) => {
@@ -21,19 +20,13 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    fetch("/courses")
-      .then((r) => r.json())
-      .then((data) => {
-        setCourseList(data);
-      });
-
+  if (currentUser !== null) {
     fetch("/questions")
       .then((r) => r.json())
       .then((data) => {
         setAllQuestions(data);
       });
-  }, []);
+  }
 
   function addQuestion(newQuestion) {
     setAllQuestions([...allQuestions, newQuestion]);
@@ -97,7 +90,6 @@ function App() {
               allQuestions={allQuestions}
               addQuestion={addQuestion}
               addComment={addComment}
-              courseList={courseList}
             />
           }
         />

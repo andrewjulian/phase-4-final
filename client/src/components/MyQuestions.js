@@ -8,8 +8,25 @@ const MyQuestions = ({
   handleDeleteQuestion,
   updateAnsweredQuestions,
 }) => {
-  if (currentUser.questions.length > 0) {
-    const findMyQuestions = allQuestions.filter(
+  console.log("allQuestions", allQuestions);
+
+  const displayMyQuestions = allQuestions
+    .filter((question) => {
+      return question.user.id === currentUser.id;
+    })
+    .map((question, id) => {
+      return (
+        <MyQuestionCard
+          question={question}
+          handleDeleteQuestion={handleDeleteQuestion}
+          updateAnsweredQuestions={updateAnsweredQuestions}
+          addComment={addComment}
+          key={id}
+        />
+      );
+    });
+
+  /*    const findMyQuestions = allQuestions.filter(
       (question) => question.user.id === currentUser.id
     );
 
@@ -23,8 +40,9 @@ const MyQuestions = ({
           key={id}
         />
       );
-    });
+    }); */
 
+  if (displayMyQuestions.length > 0) {
     return <div>{displayMyQuestions}</div>;
   }
 

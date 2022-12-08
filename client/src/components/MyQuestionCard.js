@@ -10,6 +10,8 @@ const MyQuestionCard = ({
   const { id, title, details, comments, open } = question;
 
   const [isOpen, setIsOpen] = useState(open);
+  const [newDetails, setNewDetails] = useState();
+  const [editQuestion, setEditQuestion] = useState(false);
   const [createComment, setCreateComment] = useState(false);
   const [seeComments, setSeeComments] = useState(false);
   const [commentText, setCommentText] = useState("");
@@ -17,6 +19,15 @@ const MyQuestionCard = ({
 
   function toggleComment() {
     setCreateComment(!createComment);
+  }
+
+  function setDetailsAsDetails(info) {
+    setNewDetails(info);
+  }
+
+  function handleEditClick() {
+    setDetailsAsDetails(details);
+    setEditQuestion(true);
   }
 
   function toggleSeeComments() {
@@ -74,6 +85,26 @@ const MyQuestionCard = ({
     setCreateComment(false);
   }
 
+  function handleQuestionEditSubmit(e) {
+    e.preventDefault();
+
+    fetch(`/questions/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        details: newDetails,
+      }),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        updateAnsweredQuestions(data);
+      });
+
+    setEditQuestion(false);
+  }
+
   function handleDeleteClick() {
     fetch(`/questions/${id}`, {
       method: "DELETE",
@@ -125,6 +156,22 @@ const MyQuestionCard = ({
         <button onClick={toggleSeeComments}>Hide Comments</button>
       </>
     );
+  } else if (editQuestion === true) {
+    return (
+      <div>
+        <h2>{title}</h2>
+        <p>{details}</p>
+        <form onSubmit={handleQuestionEditSubmit}>
+          <input
+            type="text"
+            value={newDetails}
+            onChange={(e) => setNewDetails(e.target.value)}
+          ></input>
+          <br />
+          <button>Submit Edit!</button>
+        </form>
+      </div>
+    );
   }
 
   return (
@@ -136,6 +183,7 @@ const MyQuestionCard = ({
       <button
         onClick={handleUpdateQuestion}
       >{`Open to Answer ${isOpen}`}</button>
+      <button onClick={handleEditClick}>Edit Questions</button>
       <button onClick={handleDeleteClick}>Delete</button>
     </div>
   );

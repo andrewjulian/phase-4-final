@@ -2,6 +2,9 @@ class CoursesController < ApplicationController
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
+  skip_before_action :authorize, only: [:index]
+
+
   def create
     course = Course.create!(user_params)
     render json: course, include: :questions, status: :created
@@ -14,7 +17,7 @@ class CoursesController < ApplicationController
 
   def index
     courses = Course.all
-    render json: courses, include: :questions
+    render json: courses
   end
 
   private

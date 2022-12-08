@@ -14,17 +14,19 @@ function App() {
   const [courseList, setCourseList] = useState([]);
 
   useEffect(() => {
-    fetch("/courses")
-      .then((r) => r.json())
-      .then((data) => {
-        setCourseList(data);
-      });
-
     fetch("/auth").then((res) => {
       if (res.ok) {
         res.json().then((user) => setCurrentUser(user));
       }
     });
+  }, []);
+
+  useEffect(() => {
+    fetch("/courses")
+      .then((r) => r.json())
+      .then((data) => {
+        setCourseList(data);
+      });
 
     fetch("/questions")
       .then((r) => r.json())

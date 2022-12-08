@@ -19,9 +19,7 @@ function App() {
       .then((data) => {
         setCourseList(data);
       });
-  }, []);
 
-  useEffect(() => {
     fetch("/auth").then((res) => {
       if (res.ok) {
         res.json().then((user) => setCurrentUser(user));

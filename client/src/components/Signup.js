@@ -1,59 +1,86 @@
-import React, { useState } from 'react'
-import {NavLink as Link} from 'react-router-dom'
-import '../App.css'
+import React, { useState } from "react";
+import { NavLink as Link } from "react-router-dom";
+import "../App.css";
 
-const Signup = ({setCurrentUser}) => {
-
+const Signup = ({ setCurrentUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
 
-  function handleLoginSubmit(e){
-    e.preventDefault()
+  function handleLoginSubmit(e) {
+    e.preventDefault();
 
     const user = {
       username,
       password,
-      display_name: displayName
-    }
+      display_name: displayName,
+    };
 
-    fetch('/users',{
+    fetch("/users", {
       method: "POST",
-      headers:{'Content-type':'application/json'},
-      body:JSON.stringify(user)
-    })
-    .then(res => {
-      if(res.ok){
-        res.json().then(setCurrentUser(user))
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(user),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then(setCurrentUser(user));
       } else {
-        console.log(errors)
+        console.log(errors);
       }
-    })
+    });
 
-    console.log("Yes! Signup!")
-    setUsername("")
-    setPassword("")
+    console.log("Yes! Signup!");
+    setUsername("");
+    setPassword("");
   }
 
   return (
     <div className="signup">
       <h1>Sign Up for Readit!</h1>
       <form onSubmit={handleLoginSubmit}>
-        <label htmlFor="email"><b>Email: </b></label>
-        <input type="text" placeholder="Enter Email" value={username} onChange={(e)=>setUsername(e.target.value)} id="email" required></input>
-        <br/>
-        <br/>
-        <label htmlFor="psw"><b>Password: </b></label>
-        <input type="text" placeholder="Enter Password" value={password} onChange={(e)=>setPassword(e.target.value)} id="psw" required></input>
-        <br/>
-        <br/>
-        <label htmlFor="psw"><b>Display Name: </b></label>
-        <input type="text" placeholder="Enter Display Name" value={displayName} onChange={(e)=> setDisplayName(e.target.value)} id="psw" required></input>
-        <br/>
-        <br/>
+        <label htmlFor="email">
+          <b>Email: </b>
+        </label>
+        <input
+          type="text"
+          placeholder="Enter Email"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          id="email"
+          required
+        ></input>
+        <br />
+        <br />
+        <label htmlFor="psw">
+          <b>Password: </b>
+        </label>
+        <input
+          type="text"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          id="psw"
+          required
+        ></input>
+        <br />
+        <br />
+        <label htmlFor="psw">
+          <b>Display Name: </b>
+        </label>
+        <input
+          type="text"
+          placeholder="Enter Display Name"
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+          id="psw"
+          required
+        ></input>
+        <br />
+        <br />
         <p>By creating an account you agree to our Terms & Privacy</p>
-        <button type="submit" className="registerbtn">Register!</button>
+        <button type="submit" className="registerbtn">
+          Register!
+        </button>
       </form>
 
       <div className="signin">
@@ -63,7 +90,7 @@ const Signup = ({setCurrentUser}) => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

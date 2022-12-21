@@ -19,6 +19,13 @@ class UsersController < ApplicationController
     render json: users
   end
 
+  def showCourses
+    user = User.find_by(id: session[:user_id])
+    courseList = user.courses.map{|course| course.course_name}
+    courseList.uniq
+    render json: courseList
+  end
+
   private
 
   def render_unprocessable_entity(invalid)

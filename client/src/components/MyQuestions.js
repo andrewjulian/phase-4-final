@@ -8,8 +8,6 @@ const MyQuestions = ({
   handleDeleteQuestion,
   updateAnsweredQuestions,
 }) => {
-  console.log("allQuestions", allQuestions);
-
   const displayMyQuestions = allQuestions
     .filter((question) => {
       return question.user.id === currentUser.id;

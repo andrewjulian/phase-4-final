@@ -7,7 +7,7 @@ const MyQuestionCard = ({
   handleDeleteQuestion,
   updateAnsweredQuestions,
 }) => {
-  const { id, title, details, comments, open } = question;
+  const { id, title, details, comments, open, course_id } = question;
 
   const [isOpen, setIsOpen] = useState(open);
   const [newDetails, setNewDetails] = useState();
@@ -178,6 +178,7 @@ const MyQuestionCard = ({
     <div>
       <h2>{title}</h2>
       <p>{details}</p>
+      <p>Course ID {course_id}</p>
       <button onClick={toggleComment}>Add Comment</button>
       <button onClick={toggleSeeComments}>See Comments</button>
       <button

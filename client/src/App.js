@@ -18,22 +18,29 @@ function App() {
         res.json().then((user) => setCurrentUser(user));
       }
     });
-  }, []);
 
-  if (currentUser !== null) {
     fetch("/questions")
       .then((r) => r.json())
       .then((data) => {
         setAllQuestions(data);
       });
-  }
+  }, []);
+
+  /* if (currentUser !== null) {
+    fetch("/questions")
+      .then((r) => r.json())
+      .then((data) => {
+        setAllQuestions(data);
+      });
+  } */
 
   function addQuestion(newQuestion) {
     setAllQuestions([...allQuestions, newQuestion]);
-    /* setCurrentUser({
+
+    setCurrentUser({
       ...currentUser,
       questions: [...currentUser.questions, newQuestion],
-    }); */
+    });
   }
 
   function addComment(newComment) {

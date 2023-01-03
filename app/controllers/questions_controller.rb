@@ -15,8 +15,8 @@ class QuestionsController < ApplicationController
 
   def update
     user = User.find_by(id: session[:user_id])
-    question = Question.find_by(id: params[:id])
-    if user.id === question.user.id
+    question = user.questions.find_by(id: params[:id])
+    if question
       question.update(question_params)
       render json: question
     else 
@@ -26,13 +26,21 @@ class QuestionsController < ApplicationController
 
   def destroy
     user = User.find_by(id: session[:user_id])
-    question = Question.find_by(id: params[:id])
-    if user.id === question.user.id
+    question = user.questions.find_by(id: params[:id])
+    if question
       question.destroy
       render json: question
     else 
       render json: { error: "Review not found" }, status: :not_found
     end
+  end
+
+  def mycoursequestions
+    user = User.find_by(id: session[:user_id])
+    course = user.courses.find_by(course_name: params[:course_name])
+    myquestions = user.questions
+    listofcoursequestions = myquestions.where("course_id = ?", course.id)
+    render json: listofcoursequestions    
   end
 
   private

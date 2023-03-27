@@ -1,22 +1,23 @@
-import React, { useState } from 'react'
-import {NavLink as Link} from 'react-router-dom'
-import '../App.css'
+import React, { useState } from "react";
+import { NavLink as Link } from "react-router-dom";
+import "../App.css";
 
-const Landing = ({setCurrentUser}) => {
-  
+const Landing = ({ setCurrentUser }) => {
+  //commented out for now
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
 
-  function handleUsernameChange(event){
-    setUsername(event.target.value)
+  function handleUsernameChange(event) {
+    setUsername(event.target.value);
   }
-  function handlePasswordChange(event){
-    setPassword(event.target.value)
+  function handlePasswordChange(event) {
+    setPassword(event.target.value);
   }
-  
-  function handleLoginSubmit(e){
-    e.preventDefault()
+
+  function handleLoginSubmit(e) {
+    e.preventDefault();
 
     fetch("/login", {
       method: "POST",
@@ -25,34 +26,54 @@ const Landing = ({setCurrentUser}) => {
       },
       body: JSON.stringify({
         username,
-        password
+        password,
       }),
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => setCurrentUser(user));
       } else {
-        setErrors(errors)
+        setErrors(errors);
       }
     });
 
-    console.log("Yes! Login!")
-    setUsername("")
-    setPassword("")
+    console.log("Yes! Login!");
+    setUsername("");
+    setPassword("");
   }
-  
+
   return (
     <div className="login">
       <h1>Login to Readit!</h1>
       <form onSubmit={handleLoginSubmit}>
-        <label htmlFor="email"><b>Email: </b></label>
-        <input type="text" placeholder="Enter Email" value={username} onChange={handleUsernameChange} id="email" required></input>
-        <br/>
-        <br/>
-        <label htmlFor="psw"><b>Password: </b></label>
-        <input type="text" placeholder="Enter Password" value={password} onChange={handlePasswordChange} id="psw" required></input>
-        <br/>
+        <label htmlFor="email">
+          <b>Email: </b>
+        </label>
+        <input
+          type="text"
+          placeholder="Enter Email"
+          value={username}
+          onChange={handleUsernameChange}
+          id="email"
+          required
+        ></input>
+        <br />
+        <br />
+        <label htmlFor="psw">
+          <b>Password: </b>
+        </label>
+        <input
+          type="text"
+          placeholder="Enter Password"
+          value={password}
+          onChange={handlePasswordChange}
+          id="psw"
+          required
+        ></input>
+        <br />
         <p>By creating an account you agree to our Terms & Privacy</p>
-        <button type="submit" className="registerbtn">Log In</button>
+        <button type="submit" className="registerbtn">
+          Log In
+        </button>
       </form>
 
       <div className="signin">
@@ -62,7 +83,7 @@ const Landing = ({setCurrentUser}) => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;

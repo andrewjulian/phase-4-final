@@ -17,6 +17,9 @@ const OpenQuestions = ({ allQuestions, addQuestion, addComment }) => {
       });
   }, []);
 
+  let onlyOpenQuestions = null;
+  let displayOpenQuestions = null;
+
   const listofCourses = courseList.map((course, id) => {
     return (
       <option key={id} value={course.id}>
@@ -33,15 +36,23 @@ const OpenQuestions = ({ allQuestions, addQuestion, addComment }) => {
     setCourse(e.target.value);
   }
 
-  const onlyOpenQuestions = allQuestions.filter(
-    (question) => question.open === true
-  );
+  if (allQuestions !== undefined) {
+    if (allQuestions.length > 0) {
+      onlyOpenQuestions = allQuestions.filter(
+        (question) => question.open === true
+      );
 
-  const displayOpenQuestions = onlyOpenQuestions.map((question, id) => {
-    return (
-      <QuestionCard addComment={addComment} question={question} key={id} />
-    );
-  });
+      displayOpenQuestions = onlyOpenQuestions.map((question, id) => {
+        return (
+          <QuestionCard addComment={addComment} question={question} key={id} />
+        );
+      });
+    } else {
+      displayOpenQuestions = "No questions yet!";
+    }
+  } else {
+    displayOpenQuestions = "No questions yet!";
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -114,6 +125,8 @@ const OpenQuestions = ({ allQuestions, addQuestion, addComment }) => {
     <div>
       <p>Questions</p>
       <button onClick={toggleAddQuestion}>Add a question!</button>
+      <br />
+      <br />
       {displayOpenQuestions}
       {errors.length > 0 && (
         <ul style={{ color: "red" }}>

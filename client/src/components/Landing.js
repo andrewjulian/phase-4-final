@@ -3,8 +3,6 @@ import { NavLink as Link } from "react-router-dom";
 import "../App.css";
 
 const Landing = ({ setCurrentUser }) => {
-  //commented out for now
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);

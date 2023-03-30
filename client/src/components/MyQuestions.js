@@ -7,23 +7,34 @@ const MyQuestions = ({
   handleDeleteQuestion,
   updateAnsweredQuestions,
 }) => {
-  const displayMyQuestions = currentUser.questions.map((question, id) => {
-    return (
-      <MyQuestionCard
-        question={question}
-        handleDeleteQuestion={handleDeleteQuestion}
-        updateAnsweredQuestions={updateAnsweredQuestions}
-        addComment={addComment}
-        key={id}
-      />
-    );
-  });
+  let displayMyQuestions = null;
 
-  if (displayMyQuestions.length > 0) {
-    return <div>{displayMyQuestions}</div>;
+  if (currentUser.questions !== undefined) {
+    if (currentUser.questions.length > 0) {
+      displayMyQuestions = currentUser.questions.map((question, id) => {
+        return (
+          <MyQuestionCard
+            question={question}
+            handleDeleteQuestion={handleDeleteQuestion}
+            updateAnsweredQuestions={updateAnsweredQuestions}
+            addComment={addComment}
+            key={id}
+          />
+        );
+      });
+    } else {
+      displayMyQuestions = "No questions yet!";
+    }
+  } else {
+    displayMyQuestions = "No questions yet!";
   }
 
-  return <div>No Question Yet</div>;
+  return (
+    <div className="my-questions">
+      <h2>My Questions</h2>
+      {displayMyQuestions}
+    </div>
+  );
 };
 
 export default MyQuestions;

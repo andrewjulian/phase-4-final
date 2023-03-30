@@ -1,37 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const Profile = ({ currentUser }) => {
   //const [courseList, setCourseList] = useState([]);
   const { username, display_name, courses } = currentUser;
 
-  /* const allCourses = courses.map((course) => course.course_name);
-  const uniqueCourses = [...new Set(allCourses)];
-  const displayUniqueCourses = uniqueCourses.map((course, id) => {
-    return <h5 key={id}>{course}</h5>;
-  }); */
+  let displayUniqueCourses = null;
 
-  const displayUniqueCourses = courses.map((course, id) => {
-    return <h5 key={id}>{course.course_name}</h5>;
-  });
-
-  /* useEffect(() => {
-    fetch("/courseList")
-      .then((r) => r.json())
-      .then((data) => {
-        setCourseList(data);
+  if (courses !== undefined) {
+    if (courses.length > 0) {
+      displayUniqueCourses = courses.map((course, id) => {
+        return <h5 key={id}>{course.course_name}</h5>;
       });
-  }, []); */
-
-  /*   const alsoUniqueCourses = courseList.map((course, id) => {
-    return <h5 key={id}>{course}</h5>;
-  }); */
+    } else {
+      displayUniqueCourses = "No courses yet!";
+    }
+  } else {
+    displayUniqueCourses = "No courses yet!";
+  }
 
   return (
     <>
       <h2>{display_name}</h2>
       <h4>{username}</h4>
       {displayUniqueCourses}
-      {/* {alsoUniqueCourses} */}
     </>
   );
 };

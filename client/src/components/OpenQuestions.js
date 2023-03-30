@@ -115,6 +115,13 @@ const OpenQuestions = ({ allQuestions, addQuestion, addComment }) => {
       <p>Questions</p>
       <button onClick={toggleAddQuestion}>Add a question!</button>
       {displayOpenQuestions}
+      {errors.length > 0 && (
+        <ul style={{ color: "red" }}>
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

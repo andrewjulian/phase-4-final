@@ -30,7 +30,7 @@ const Landing = ({ setCurrentUser }) => {
       if (r.ok) {
         r.json().then((user) => setCurrentUser(user));
       } else {
-        setErrors(errors);
+        r.json().then((err) => setErrors(err.errors));
       }
     });
 
@@ -80,6 +80,13 @@ const Landing = ({ setCurrentUser }) => {
           <Link to="/signup">Sign Up!</Link>
         </button>
       </div>
+      {errors.length > 0 && (
+        <ul style={{ color: "red" }}>
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -49,11 +49,15 @@ const MyQuestionCard = ({
       body: JSON.stringify({
         open: !isOpen,
       }),
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        updateAnsweredQuestions(data);
-      });
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((data) => {
+          updateAnsweredQuestions(data);
+        });
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
 
     setIsOpen(!isOpen);
   }
@@ -186,6 +190,13 @@ const MyQuestionCard = ({
       >{`Open to Answer ${isOpen}`}</button>
       <button onClick={handleEditClick}>Edit Questions</button>
       <button onClick={handleDeleteClick}>Delete</button>
+      {errors.length > 0 && (
+        <ul style={{ color: "red" }}>
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

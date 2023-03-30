@@ -95,6 +95,13 @@ const QuestionCard = ({ question, addComment }) => {
       <p>{details}</p>
       <button onClick={toggleComment}>Add Comment</button>
       <button onClick={toggleSeeComments}>See Comments</button>
+      {errors.length > 0 && (
+        <ul style={{ color: "red" }}>
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

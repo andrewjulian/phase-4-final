@@ -25,7 +25,7 @@ const Signup = ({ setCurrentUser }) => {
       if (res.ok) {
         res.json().then(setCurrentUser(user));
       } else {
-        console.log(errors);
+        res.json().then((err) => setErrors(err.errors));
       }
     });
 
@@ -89,6 +89,13 @@ const Signup = ({ setCurrentUser }) => {
           <Link to="/landing">Login</Link>
         </button>
       </div>
+      {errors.length > 0 && (
+        <ul style={{ color: "red" }}>
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

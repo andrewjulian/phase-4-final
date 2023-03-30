@@ -76,7 +76,7 @@ const Signup = ({ setCurrentUser }) => {
           required
         ></input>
         <br />
-        <br />
+
         <p>By creating an account you agree to our Terms & Privacy</p>
         <button type="submit" className="registerbtn">
           Register!
@@ -86,11 +86,13 @@ const Signup = ({ setCurrentUser }) => {
       <div className="signin">
         <p>Already have an account? Sign in</p>
         <button className="accountbtn">
-          <Link to="/landing">Login</Link>
+          <Link className="link-styles" to="/landing">
+            Login
+          </Link>
         </button>
       </div>
       {errors.length > 0 && (
-        <ul style={{ color: "red" }}>
+        <ul className="errors" style={{ color: "red" }}>
           {errors.map((error) => (
             <li key={error}>{error}</li>
           ))}

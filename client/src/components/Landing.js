@@ -77,7 +77,9 @@ const Landing = ({ setCurrentUser }) => {
       <div className="signin">
         <p>Don't have an account?</p>
         <button className="accountbtn">
-          <Link to="/signup">Sign Up!</Link>
+          <Link className="link-styles" to="/signup">
+            Sign Up!
+          </Link>
         </button>
       </div>
       {errors.length > 0 && (

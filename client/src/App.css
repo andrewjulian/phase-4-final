@@ -84,7 +84,7 @@
 
 .navbar-links:hover {
   background-color: lightgray;
-  color: darkblue; 
+  color: darkblue;
   border-radius: 20px;
 }
 
@@ -96,7 +96,7 @@
 
 .login {
   width: 50%;
-  height: 50%;
+  border-radius: 10px;
   position: fixed;
   left: 25%;
   top: 20%;
@@ -108,21 +108,24 @@
 .signin {
   background-color: #f1f1f1;
   text-align: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 10px;
+  margin: 10px;
 }
 
-.signup{
+.signup {
   width: 50%;
   height: 75%;
   position: fixed;
   left: 25%;
   top: 5%;
   background-color: lightgray;
-  color: darkblue
+  color: darkblue;
 }
 
-input[type=text], input[type=password] {
+input[type="text"],
+input[type="password"] {
   width: 95%;
   height: 40px;
   margin: 5px;
@@ -131,8 +134,9 @@ input[type=text], input[type=password] {
   background: #f1f1f1;
 }
 
-input[type=text]:focus, input[type=password]:focus {
-  background-color: rgb(80,80,160);
+input[type="text"]:focus,
+input[type="password"]:focus {
+  background-color: rgb(80, 80, 160);
   color: white;
   outline: none;
 }
@@ -149,6 +153,34 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 .registerbtn:hover {
-  opacity:1;
+  opacity: 1;
 }
 
+.accountbtn {
+  background-color: darkgray;
+  color: white;
+  padding: 5px 15px;
+  margin-bottom: 7px;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  opacity: 0.7;
+}
+
+.accountbtn:hover {
+  opacity: 1;
+  border-width: 2px;
+  border-color: darkblue;
+}
+
+.link-styles {
+  color: darkblue;
+  text-decoration: none;
+  text-decoration-style: bold;
+}
+
+.link-styles:hover {
+  color: white;
+  text-decoration: none;
+  text-decoration-style: bold;
+}

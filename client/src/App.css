@@ -184,3 +184,8 @@ input[type="password"]:focus {
   text-decoration: none;
   text-decoration-style: bold;
 }
+
+.errors {
+  color: red;
+  list-style: none;
+}

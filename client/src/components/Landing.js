@@ -9,9 +9,11 @@ const Landing = ({ setCurrentUser }) => {
 
   function handleUsernameChange(event) {
     setUsername(event.target.value);
+    setErrors([]);
   }
   function handlePasswordChange(event) {
     setPassword(event.target.value);
+    setErrors([]);
   }
 
   function handleLoginSubmit(e) {
@@ -83,7 +85,7 @@ const Landing = ({ setCurrentUser }) => {
         </button>
       </div>
       {errors.length > 0 && (
-        <ul style={{ color: "red" }}>
+        <ul className="errors">
           {errors.map((error) => (
             <li key={error}>{error}</li>
           ))}

@@ -26,14 +26,6 @@ function App() {
       });
   }, []);
 
-  /* if (currentUser !== null) {
-    fetch("/questions")
-      .then((r) => r.json())
-      .then((data) => {
-        setAllQuestions(data);
-      });
-  } */
-
   function addQuestion(newQuestion) {
     setAllQuestions([...allQuestions, newQuestion]);
 
@@ -68,6 +60,11 @@ function App() {
     const updateAllQuestions = allQuestions.filter(
       (question) => question.id !== removedAssignment.id
     );
+
+    const updateUserQuestions = currentUser.questions.filter(
+      (question) => question.id !== removedAssignment.id
+    );
+    setCurrentUser({ ...currentUser, questions: updateUserQuestions });
     setAllQuestions(updateAllQuestions);
   }
 

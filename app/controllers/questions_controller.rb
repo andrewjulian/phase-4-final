@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
       question.destroy
       render json: question
     else 
-      render json: { error: "Review not found" }, status: :not_found
+      render json: { error: "Question not found" }, status: :not_found
     end
   end
 

@@ -1,4 +1,5 @@
 import "./App.css";
+import "./index.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Landing from "./components/Landing";
 import OpenQuestions from "./components/OpenQuestions";

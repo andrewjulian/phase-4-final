@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CommentText from "./CommentText";
+import "../App.css";
 
 const MyQuestionCard = ({
   question,
@@ -122,7 +123,7 @@ const MyQuestionCard = ({
 
   if (createComment === true) {
     return (
-      <>
+      <div className="question-card">
         <h2>{title}</h2>
         <p>{details}</p>
         {questionComments}
@@ -135,34 +136,44 @@ const MyQuestionCard = ({
             required
           ></input>
           <br />
-          <button>Comment!</button>
+          <button className="question-button">Comment!</button>
         </form>
-        <button onClick={toggleComment}>Nevermind</button>
-      </>
+        <button className="question-button" onClick={toggleComment}>
+          Nevermind
+        </button>
+      </div>
     );
   } else if (seeComments === true && comments.length !== 0) {
     return (
-      <>
+      <div className="question-card">
         <h2>{title}</h2>
         <p>{details}</p>
         {questionComments}
-        <button onClick={toggleComment}>Add Comment</button>
-        <button onClick={toggleSeeComments}>Hide Comments</button>
-      </>
+        <button className="question-button" onClick={toggleComment}>
+          Add Comment
+        </button>
+        <button className="question-button" onClick={toggleSeeComments}>
+          Hide Comments
+        </button>
+      </div>
     );
   } else if (seeComments === true && comments.length === 0) {
     return (
-      <>
+      <div className="question-card">
         <h2>{title}</h2>
         <p>{details}</p>
         <h4>**No Comments Yet**</h4>
-        <button onClick={toggleComment}>Add Comment</button>
-        <button onClick={toggleSeeComments}>Hide Comments</button>
-      </>
+        <button className="question-button" onClick={toggleComment}>
+          Add Comment
+        </button>
+        <button className="question-button" onClick={toggleSeeComments}>
+          Hide Comments
+        </button>
+      </div>
     );
   } else if (editQuestion === true) {
     return (
-      <div>
+      <div className="question-card">
         <h2>{title}</h2>
         <p>{details}</p>
         <form onSubmit={handleQuestionEditSubmit}>
@@ -172,24 +183,34 @@ const MyQuestionCard = ({
             onChange={(e) => setNewDetails(e.target.value)}
           ></input>
           <br />
-          <button>Submit Edit!</button>
+          <button className="question-button">Submit Edit!</button>
         </form>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="question-card">
       <h2>{title}</h2>
       <p>{details}</p>
       <p>Course ID {course_id}</p>
-      <button onClick={toggleComment}>Add Comment</button>
-      <button onClick={toggleSeeComments}>See Comments</button>
+      <button className="question-button" onClick={toggleComment}>
+        Add Comment
+      </button>
+      <button className="question-button" onClick={toggleSeeComments}>
+        See Comments
+      </button>
       <button
+        className="question-button"
         onClick={handleUpdateQuestion}
       >{`Open to Answer ${isOpen}`}</button>
-      <button onClick={handleEditClick}>Edit Questions</button>
-      <button onClick={handleDeleteClick}>Delete</button>
+      <br />
+      <button className="question-button" onClick={handleEditClick}>
+        Edit Questions
+      </button>
+      <button className="question-button" onClick={handleDeleteClick}>
+        Delete
+      </button>
       {errors.length > 0 && (
         <ul style={{ color: "red" }}>
           {errors.map((error) => (

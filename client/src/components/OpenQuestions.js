@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import QuestionCard from "./QuestionCard";
+import "../App.css";
 
 const OpenQuestions = ({ allQuestions, addQuestion, addComment }) => {
   const [title, setTitle] = useState("");
@@ -87,7 +88,9 @@ const OpenQuestions = ({ allQuestions, addQuestion, addComment }) => {
   if (createQuestion === true) {
     return (
       <div>
-        <button onClick={toggleAddQuestion}>Review Questions</button>
+        <button className="question-button" onClick={toggleAddQuestion}>
+          Review Questions
+        </button>
         <form onSubmit={handleSubmit}>
           <label>Question Title</label>
           <input
@@ -115,7 +118,9 @@ const OpenQuestions = ({ allQuestions, addQuestion, addComment }) => {
             {listofCourses}
           </select>
           <br />
-          <button onSubmit={handleSubmit}>Ask!</button>
+          <button className="question-button" onSubmit={handleSubmit}>
+            Ask!
+          </button>
         </form>
       </div>
     );
@@ -123,11 +128,13 @@ const OpenQuestions = ({ allQuestions, addQuestion, addComment }) => {
 
   return (
     <div>
-      <p>Questions</p>
-      <button onClick={toggleAddQuestion}>Add a question!</button>
+      <h1>Questions</h1>
+      <button className="question-button" onClick={toggleAddQuestion}>
+        Add a question!
+      </button>
       <br />
       <br />
-      {displayOpenQuestions}
+      <div className="question-cards">{displayOpenQuestions}</div>
       {errors.length > 0 && (
         <ul style={{ color: "red" }}>
           {errors.map((error) => (

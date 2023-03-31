@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CommentText from "./CommentText";
+import "../App.css";
 
 const QuestionCard = ({ question, addComment }) => {
   const { title, details, comments } = question;
@@ -49,7 +50,7 @@ const QuestionCard = ({ question, addComment }) => {
 
   if (createComment === true) {
     return (
-      <>
+      <div className="question-card">
         <h2>{title}</h2>
         <p>{details}</p>
         {questionComments}
@@ -62,39 +63,53 @@ const QuestionCard = ({ question, addComment }) => {
             required
           ></input>
           <br />
-          <button>Comment!</button>
+          <button className="question-button">Comment!</button>
         </form>
-        <button onClick={toggleComment}>Nevermind</button>
-      </>
+        <button className="question-button" onClick={toggleComment}>
+          Nevermind
+        </button>
+      </div>
     );
   } else if (seeComments === true && comments.length !== 0) {
     return (
-      <>
+      <div className="question-card">
         <h2>{title}</h2>
         <p>{details}</p>
         {questionComments}
-        <button onClick={toggleComment}>Add Comment</button>
-        <button onClick={toggleSeeComments}>Hide Comments</button>
-      </>
+        <button className="question-button" onClick={toggleComment}>
+          Add Comment
+        </button>
+        <button className="question-button" onClick={toggleSeeComments}>
+          Hide Comments
+        </button>
+      </div>
     );
   } else if (seeComments === true && comments.length === 0) {
     return (
-      <>
+      <div className="question-card">
         <h2>{title}</h2>
         <p>{details}</p>
         <h4>**No Comments Yet**</h4>
-        <button onClick={toggleComment}>Add Comment</button>
-        <button onClick={toggleSeeComments}>Hide Comments</button>
-      </>
+        <button className="question-button" onClick={toggleComment}>
+          Add Comment
+        </button>
+        <button className="question-button" onClick={toggleSeeComments}>
+          Hide Comments
+        </button>
+      </div>
     );
   }
 
   return (
-    <div>
+    <div className="question-card">
       <h2>{title}</h2>
       <p>{details}</p>
-      <button onClick={toggleComment}>Add Comment</button>
-      <button onClick={toggleSeeComments}>See Comments</button>
+      <button className="question-button" onClick={toggleComment}>
+        Add Comment
+      </button>
+      <button className="question-button" onClick={toggleSeeComments}>
+        See Comments
+      </button>
       {errors.length > 0 && (
         <ul style={{ color: "red" }}>
           {errors.map((error) => (

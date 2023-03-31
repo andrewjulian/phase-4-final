@@ -30,7 +30,7 @@ const MyQuestions = ({
   }
 
   return (
-    <div className="my-questions">
+    <div className="question-cards">
       <h2>My Questions</h2>
       {displayMyQuestions}
     </div>

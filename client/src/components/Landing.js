@@ -35,8 +35,6 @@ const Landing = ({ setCurrentUser }) => {
         r.json().then((err) => setErrors(err.errors));
       }
     });
-
-    console.log("Yes! Login!");
     setUsername("");
     setPassword("");
   }

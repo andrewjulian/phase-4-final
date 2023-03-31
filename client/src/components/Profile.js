@@ -1,7 +1,6 @@
 import React from "react";
 
 const Profile = ({ currentUser }) => {
-  //const [courseList, setCourseList] = useState([]);
   const { username, display_name, courses } = currentUser;
 
   let displayUniqueCourses = null;
@@ -19,11 +18,19 @@ const Profile = ({ currentUser }) => {
   }
 
   return (
-    <>
-      <h2>{display_name}</h2>
-      <h4>{username}</h4>
+    <div>
+      <h1>User Profile</h1>
+      <h3>
+        Username: <span style={{ color: "darkblue" }}>{display_name}</span>
+      </h3>
+      <h3>
+        Email:
+        <span style={{ color: "darkblue" }}> {username}</span>
+      </h3>
+
+      <h3>Courses:</h3>
       {displayUniqueCourses}
-    </>
+    </div>
   );
 };
 
